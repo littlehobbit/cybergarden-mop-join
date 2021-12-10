@@ -40,7 +40,7 @@ public class SignUpScreen extends AppCompatActivity {
             public void onClick(View view) {
                 NetworkService.getInstance()
                         .getJSONApi()
-                        .registrationPostRequest(new RegistrationParams(email.getText().toString(), password.getText().toString()))
+                        .registrationPostRequest(new RegistrationParams(email.getText().toString().trim(), password.getText().toString()))
                         .enqueue(new Callback<Void>() {
                             @Override
                             public void onResponse(@NonNull Call<Void> call, @NonNull Response<Void> response) {

@@ -36,7 +36,7 @@ public class SignInScreen extends AppCompatActivity {
             public void onClick(View view) {
                 NetworkService.getInstance()
                         .getJSONApi()
-                        .loginPostRequest(new LoginParams(login.getText().toString(), password.getText().toString()))
+                        .loginPostRequest(new LoginParams(login.getText().toString().trim(), password.getText().toString()))
                         .enqueue(new Callback<LoginResults>() {
                             @Override
                             public void onResponse(@NonNull Call<LoginResults> call, @NonNull Response<LoginResults> response) {

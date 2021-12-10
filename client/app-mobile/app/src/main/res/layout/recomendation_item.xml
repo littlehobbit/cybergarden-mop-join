@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:backgroundTint="@color/white"
+    app:cardCornerRadius="120dp"
+    app:cardElevation="5dp">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:padding="15dp">
+
+        <TextView
+            android:id="@+id/faculty_name"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="09.04.03 - Программная инженерия"
+            android:textStyle="bold"
+            android:textColor="@color/main_blue"/>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:gravity="center_vertical">
+
+            <com.google.android.material.progressindicator.LinearProgressIndicator
+                android:id="@+id/recomendation_percent_bar"
+                android:layout_width="320dp"
+                android:layout_height="8dp"
+                app:trackColor="#F0F0F0"
+                app:trackCornerRadius="6dp"
+                app:trackThickness="8dp"
+                android:progress="85"
+                app:indicatorColor="@color/main_blue"
+                app:layout_constraintEnd_toEndOf="parent" />
+
+            <TextView
+                android:id="@+id/recomendation_percent"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="15dp"
+                android:text="85%"
+                android:textStyle="bold"
+                android:textColor="@color/black"/>
+
+        </LinearLayout>
+
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="right"
+            android:rotation="-90"
+            app:srcCompat="@drawable/ic_baseline_keyboard_arrow_down_24" />
+
+
+
+
+    </LinearLayout>
+
+
+</androidx.cardview.widget.CardView>

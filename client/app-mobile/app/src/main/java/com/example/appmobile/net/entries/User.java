@@ -3,6 +3,8 @@ package com.example.appmobile.net.entries;
 import com.google.gson.annotations.SerializedName;
 
 public class User {
+    public Integer id;
+
     @SerializedName("first_name")
     public String firstName;
 
@@ -22,4 +24,8 @@ public class User {
     public String phone;
 
     public String role;
+
+    public String getFullName() {
+        return String.join(" ", firstName, secondName, middleName);
+    }
 }

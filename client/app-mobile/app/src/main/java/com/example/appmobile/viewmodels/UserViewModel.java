@@ -1,10 +1,13 @@
 package com.example.appmobile.viewmodels;
 
+import android.content.Context;
 import android.util.Log;
 import android.view.View;
 
 import androidx.lifecycle.MutableLiveData;
 import androidx.lifecycle.ViewModel;
+import androidx.lifecycle.ViewModelProvider;
+import androidx.lifecycle.ViewModelStoreOwner;
 
 import com.example.appmobile.net.NetworkService;
 import com.example.appmobile.net.entries.LoginParams;
@@ -52,6 +55,10 @@ public class UserViewModel extends ViewModel {
                     }
                 }
         );
+    }
+
+    public static UserViewModel create(ViewModelStoreOwner owner) {
+        return new ViewModelProvider(owner).get(UserViewModel.class);
     }
 
 }

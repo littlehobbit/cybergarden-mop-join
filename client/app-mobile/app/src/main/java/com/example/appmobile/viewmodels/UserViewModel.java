@@ -42,7 +42,7 @@ public class UserViewModel extends ViewModel {
                             Log.i("/user call", "successful");
                             user.postValue(response.body());
                         } else {
-                            Log.i("/user call", "failed");
+                            Log.i("/user call", String.valueOf(response.code()));
                         }
                     }
 

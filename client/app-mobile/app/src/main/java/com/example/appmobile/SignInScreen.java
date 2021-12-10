@@ -46,6 +46,7 @@ public class SignInScreen extends AppCompatActivity {
                             public void onResponse(@NonNull Call<LoginResults> call, @NonNull Response<LoginResults> response) {
                                 if(response.isSuccessful()) {
                                     LoginResults loginResults = response.body();
+                                    NetworkService.getInstance().setLoginResults(loginResults);
 
                                     Toast.makeText(SignInScreen.this, "Login success", Toast.LENGTH_SHORT).show();
                                     Intent intent = new Intent(SignInScreen.this, MainActivity.class);

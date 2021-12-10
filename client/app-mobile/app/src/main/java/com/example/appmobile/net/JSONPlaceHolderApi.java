@@ -18,6 +18,6 @@ public interface JSONPlaceHolderApi {
     @POST("/auth/login")
     public Call<LoginResults> loginPostRequest(@Body LoginParams data);
 
-    @GET("/user")
+    @GET("/user/user")
     public Call<User> getUserDetails(@Header("Authorization") String token);
 }

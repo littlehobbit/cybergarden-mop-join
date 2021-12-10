@@ -68,13 +68,12 @@ Content-Type: application/json
 ###
 
 GET http://192.168.43.124:3737/user/user
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6Miwic3R1ZGVudCI6NCwiaWF0IjoxNjM5MTY0NTc0fQ.yW_mZLAF86HAalT15dIJz-vn4MTya6iQ9kpdRqo6bYM
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6Miwic3R1ZGVudCI6NCwiaWF0IjoxNjM5MTY4NTI2fQ.kpAPZjCJB9jXm3aSSifZFLOSFSl4IPJEN6zq_zjovws
 
 ###
 
-GET http://192.168.43.124:3737/user/getImage?id=4
+GET http://192.168.43.124:3737/events/getImage?id=4
 Content-Type: application/json
-
 
 ###Порядок отправки частей важен
 POST http://192.168.43.124:3737/user/setImage
@@ -88,3 +87,19 @@ Content-Type: image/png
 < .\1.png
 
 --MyBoundary--
+
+###
+
+GET http://192.168.43.124:3737/events/all
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6Miwic3R1ZGVudCI6NCwiaWF0IjoxNjM5MTc0MTI3fQ.T2uInHNgmQ4uiMBvFnuP-jGsyGRowHHX43JY5vNZ2lE
+
+
+###
+
+POST http://192.168.43.124:3737/events/join
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6Miwic3R1ZGVudCI6NCwiaWF0IjoxNjM5MTc1NTE5fQ.ZwIGIbrhTFTWzE0UpFj90-CmcTYMBpkfINHQQkT6t1I
+Content-Type: application/json
+
+{
+    "event_id" : 4
+}

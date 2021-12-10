@@ -104,7 +104,7 @@ module.exports.getStudent = async (studentID) => {
                 A.second_name,\
                 A.middle_name,\
                 A.birthdate,\
-                B.id,\
+                A.id,\
                 B.username,\
                 B.email,\
                 B.phone,\
@@ -139,5 +139,47 @@ module.exports.editStudentInfo = async(student)=>{
                     birthdate=?,\
                     image=?\
                 where id=?"
+    var result = await asyncQuery(query, request_data);
+}
+
+module.exports.getAllEvents = async(userID) => {
+    var request_data = [userID];
+    var query = "Select B.id,\
+                    B.title,\
+                    B.description,\
+                    B.start_date,\
+                    B.end_date,\
+                    B.place,\
+                    B.image\
+                From Users C right join PossibleParticipants A on C.role=role_id join Events B on A.event_id=B.id\
+                Where C.id = ?"
+    var result = await asyncQuery(query, request_data);
+    return result;
+}
+
+module.exports.getEventData = async (eventID) =>{
+    var request_data = [eventID];
+    var query = "Select id,\
+                        image\
+                From Events\
+                Where id = ?"
+    var result = await asyncQuery(query, request_data);
+    return result;
+}
+
+module.exports.getEventTags = async(eventID) => {
+    var request_data = [eventID];
+    var query = 'Select B.weight,\
+                    C.name as "tag"\
+                    From Events A right join EventInterests B on A.id=B.event_id\
+                    right join Interests C on B.interest_id=C.id\
+                    Where A.id=?'
+    var result = await asyncQuery(query, request_data);
+    return result;
+}
+
+module.exports.joinEvent = async (eventID, studentID) => {
+    var request_data = [studentID, eventID];
+    var query = 'call JoinEvent(?, ?)'
     var result = await asyncQuery(query, request_data);
 }

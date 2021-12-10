@@ -27,8 +27,14 @@ const fileFilter = (req, file, cb) => {
 };
 
 router.use("/all", middlewares.authenticateUser);
-router.get("/all", (req, res) => {
+router.get("/all", async (req, res) => {
     
+    var events = await db.getAllEvents(req.user.id);
+    for (let i = 0; i < events.length; i++) {
+        events[i].tags = await db.getEventTags(events[i]["id"]);
+        delete events[i]["image"];
+    }
+    res.status(200).send(events);
 })
 
 router.use("/setImage", middlewares.authenticateUser);
@@ -56,12 +62,24 @@ router.post("/setImage", async (req, res) => {
 router.get("/getImage", async (req, res)=>{
     var id = req.body.id ? req.body.id :undefined;
     if(id === undefined) res.send(400, "User not found");
-    var image = await db.findStudentByID(id);
+    var image = await db.getEventData(id);
     if (fs.existsSync(image["image"])) {
         res.sendFile(image["image"]);    
     }
     else{
         res.status(400).send("File doesn't exist");
+    }
+})
+
+router.use("/join", middlewares.authenticateUser);
+router.post("/join", async (req, res) =>{
+    var eventID = req.body.event_id ? req.body.event_id :undefined;
+    try{
+        db.joinEvent(eventID, req.user.student)
+        res.sendStatus(200);
+    }
+    catch{
+        res.sendStatus(400);
     }
 })
 

@@ -1,9 +1,12 @@
 package com.example.appmobile.net;
 
+import com.example.appmobile.net.entries.EventsListResults;
 import com.example.appmobile.net.entries.LoginParams;
 import com.example.appmobile.net.entries.LoginResults;
 import com.example.appmobile.net.entries.RegistrationParams;
 import com.example.appmobile.net.entries.User;
+
+import java.util.ArrayList;
 
 import retrofit2.Call;
 import retrofit2.http.Body;
@@ -20,4 +23,7 @@ public interface JSONPlaceHolderApi {
 
     @GET("/user/user")
     public Call<User> getUserDetails(@Header("Authorization") String token);
+
+    @GET("/events/all")
+    public Call<ArrayList<EventsListResults>> getEventsList(@Header("Authorization") String token);
 }

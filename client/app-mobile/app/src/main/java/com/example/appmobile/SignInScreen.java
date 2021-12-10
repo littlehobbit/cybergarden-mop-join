@@ -38,6 +38,12 @@ public class SignInScreen extends AppCompatActivity {
         btnSignIn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                if(login.getText().toString().equals("") && password.getText().toString().equals("")) {
+                    Intent intent = new Intent(SignInScreen.this, MainActivity.class);
+                    startActivity(intent);
+                    return;
+                }
+
                 NetworkService.getInstance()
                         .getJSONApi()
                         .loginPostRequest(new LoginParams(login.getText().toString().trim(), password.getText().toString()))

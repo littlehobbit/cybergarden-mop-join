@@ -1,4 +1,4 @@
-package com.example.appmobile;
+package com.example.appmobile.net.entries;
 
 import com.google.gson.annotations.SerializedName;
 

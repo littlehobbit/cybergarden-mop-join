@@ -10,6 +10,10 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
+import com.example.appmobile.net.NetworkService;
+import com.example.appmobile.net.entries.LoginParams;
+import com.example.appmobile.net.entries.LoginResults;
+
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
@@ -42,6 +46,7 @@ public class SignInScreen extends AppCompatActivity {
                             public void onResponse(@NonNull Call<LoginResults> call, @NonNull Response<LoginResults> response) {
                                 if(response.isSuccessful()) {
                                     LoginResults loginResults = response.body();
+                                    NetworkService.getInstance().setLoginResults(loginResults);
 
                                     Toast.makeText(SignInScreen.this, "Login success", Toast.LENGTH_SHORT).show();
                                     Intent intent = new Intent(SignInScreen.this, MainActivity.class);

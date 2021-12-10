@@ -19,7 +19,7 @@
 
     <fragment
         android:id="@+id/nav_user"
-        android:name="com.example.appmobile.ui.faculties.FacultiesFragment"
+        android:name="com.example.appmobile.ui.profile.ProfileFragment"
         android:label="@string/menu_slideshow"
-        tools:layout="@layout/fragment_faculties" />
+        tools:layout="@layout/fragment_profile" />
 </navigation>

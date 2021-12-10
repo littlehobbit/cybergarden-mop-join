@@ -8,15 +8,16 @@ import android.widget.TextView;
 
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.example.appmobile.net.entries.NewsListResults;
 import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
 
 public class NewsRecyclerAdapter extends RecyclerView.Adapter<NewsRecyclerAdapter.ViewHolder> {
 
-    private ArrayList<NewsCardData> data = new ArrayList<>();
+    private ArrayList<NewsListResults> data = new ArrayList<>();
 
-    public NewsRecyclerAdapter(ArrayList<NewsCardData> data) {
+    public NewsRecyclerAdapter(ArrayList<NewsListResults> data) {
         this.data = data;
     }
     /**
@@ -26,15 +27,10 @@ public class NewsRecyclerAdapter extends RecyclerView.Adapter<NewsRecyclerAdapte
     public static class ViewHolder extends RecyclerView.ViewHolder {
 
         TextView title;
-        TextView description;
         ImageView image;
 
         public TextView getTitle() {
             return title;
-        }
-
-        public TextView getDescription() {
-            return description;
         }
 
         public ImageView getImage() {
@@ -45,7 +41,6 @@ public class NewsRecyclerAdapter extends RecyclerView.Adapter<NewsRecyclerAdapte
         public ViewHolder(View view) {
             super(view);
             title = view.findViewById(R.id.event_card_title);
-            description = view.findViewById(R.id.news_card_description);
             image = view.findViewById(R.id.news_card_img);
         }
     }
@@ -65,8 +60,7 @@ public class NewsRecyclerAdapter extends RecyclerView.Adapter<NewsRecyclerAdapte
     @Override
     public void onBindViewHolder(ViewHolder viewHolder, final int position) {
         viewHolder.getTitle().setText(data.get(position).getTitle());
-        viewHolder.getDescription().setText(data.get(position).getDescription());
-        Picasso.get().load(data.get(position).getImgUrl()).placeholder(R.drawable.placeholder_img).error(R.drawable.e3f0a108aabbd2325203e40177f21312).into(viewHolder.getImage());
+        Picasso.get().load("http://192.168.43.124:3737/news/getImage?id=" + data.get(position).getId()).placeholder(R.drawable.placeholder_img).error(R.drawable.e3f0a108aabbd2325203e40177f21312).into(viewHolder.getImage());
     }
 
     // Return the size of your dataset (invoked by the layout manager)
@@ -81,7 +75,7 @@ public class NewsRecyclerAdapter extends RecyclerView.Adapter<NewsRecyclerAdapte
         notifyDataSetChanged();
     }
 
-    public void addAll(ArrayList<NewsCardData> newData) {
+    public void addAll(ArrayList<NewsListResults> newData) {
         if(data == null) return;
         data.addAll(newData);
         notifyDataSetChanged();

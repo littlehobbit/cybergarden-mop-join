@@ -56,7 +56,6 @@ public class EventsFragment extends Fragment {
         super.onViewCreated(view, savedInstanceState);
         recyclerView = view.findViewById(R.id.events_list);
         adapter.clearAll();
-        ArrayList<EventsCardData> recyclerData = new ArrayList<>();
 
         NetworkService.getInstance()
                 .getJSONApi()
@@ -65,7 +64,7 @@ public class EventsFragment extends Fragment {
                     @Override
                     public void onResponse(@NonNull Call<ArrayList<EventsListResults>> call, @NonNull Response<ArrayList<EventsListResults>> response) {
                         if(response.isSuccessful()) {
-                            Toast.makeText(getContext(), "Get events list, yeeeee", Toast.LENGTH_SHORT).show();
+                            Toast.makeText(getContext(), "Get news list, yeeeee", Toast.LENGTH_SHORT).show();
                             adapter.addAll(response.body());
                             recyclerView.setAdapter(adapter);
                         }
@@ -74,7 +73,7 @@ public class EventsFragment extends Fragment {
                     @Override
                     public void onFailure(@NonNull Call<ArrayList<EventsListResults>> call, @NonNull Throwable t) {
 
-                        Toast.makeText(getContext(), "Error while sign up", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(getContext(), "Error while you get news list", Toast.LENGTH_SHORT).show();
                         t.printStackTrace();
                     }
                 });

@@ -1,0 +1,66 @@
+### Registration using json
+POST http://192.168.43.124:3737/auth/register
+Content-Type: application/json
+
+{
+    "email":"nkutovoy@sfedu.ru",
+    "password": "hello"
+}
+
+### Registration using urlencoded
+
+POST http://192.168.43.124:3737/auth/register
+Content-Type: application/x-www-form-urlencoded
+
+email=nkutovoy@sfedu.ru&password=hello
+
+### Login
+
+POST http://192.168.43.124:3737/auth/login
+Content-Type: application/json
+
+{
+    "identifier":"nkutovoy@sfedu.ru",
+    "password":"hello"
+}
+
+### Logout
+
+GET http://192.168.43.124:3737/auth/logout
+authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MiwiaWF0IjoxNjM1OTUyNTkzfQ.goiMhOCmb_6zOdpLhRD_sEbwu5ULnKkv6LjVsCZnHz8
+
+### Edit data
+
+POST http://192.168.43.124:3737/auth/edit
+authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwiaWF0IjoxNjM1OTQ5NjkwfQ.BEEIVduaKDU4Ba5pfvZU3nCvky5ET4k7HEYukfQuf50
+Content-Type: application/json
+
+{
+    "email":"nikita.kutovoy@gmail.com",
+    "phone":"+79286187502",
+    "username":"ElizavetaNN"
+}
+
+### Get data
+
+GET http://192.168.43.124:3737/auth/get
+authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwiaWF0IjoxNjM1OTQ5NjkwfQ.BEEIVduaKDU4Ba5pfvZU3nCvky5ET4k7HEYukfQuf50
+
+###
+
+GET http://192.168.43.124:3737/auth/forgotPassword
+Content-Type: application/json
+
+{
+    "email":"nikita.kutovoy@gmail.com"
+}
+
+###
+
+POST http://192.168.43.124:3737/auth/forgotPassword
+Content-Type: application/json
+
+{
+   "email": "nikita.kutovoy@gmail.com",
+   "code":"WyKgK4uoOg" 
+}

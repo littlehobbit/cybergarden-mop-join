@@ -20,8 +20,8 @@ POST http://192.168.43.124:3737/auth/login
 Content-Type: application/json
 
 {
-    "identifier":"nkutovoy@sfedu.ru",
-    "password":"hello"
+    "identifier":"dlaptev@sfedu.ru",
+    "password":"warface567"
 }
 
 ### Logout
@@ -64,3 +64,27 @@ Content-Type: application/json
    "email": "nikita.kutovoy@gmail.com",
    "code":"WyKgK4uoOg" 
 }
+
+###
+
+GET http://192.168.43.124:3737/user/user
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6Miwic3R1ZGVudCI6NCwiaWF0IjoxNjM5MTY0NTc0fQ.yW_mZLAF86HAalT15dIJz-vn4MTya6iQ9kpdRqo6bYM
+
+###
+
+GET http://192.168.43.124:3737/user/getImage?id=4
+Content-Type: application/json
+
+
+###Порядок отправки частей важен
+POST http://192.168.43.124:3737/user/setImage
+Content-Type: multipart/form-data; boundary=MyBoundary
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6Miwic3R1ZGVudCI6NCwiaWF0IjoxNjM5MTY0NTc0fQ.yW_mZLAF86HAalT15dIJz-vn4MTya6iQ9kpdRqo6bYM
+
+--MyBoundary
+Content-Disposition: form-data; name="image"; filename="1.png"
+Content-Type: image/png
+
+< .\1.png
+
+--MyBoundary--

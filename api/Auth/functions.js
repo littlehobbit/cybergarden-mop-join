@@ -87,6 +87,7 @@ module.exports.routes.login = async (req, res) => {
     if(user === undefined || !bcrypt.compareSync(req.body.password, user.password)) return res.status(400).send("User not found");
     const token = createJWTToken({
             id: user.id,
+            student:user.student
         })
     res.status(200).json({access_token: token, "token_type": "Bearer"});
     user.token = token;

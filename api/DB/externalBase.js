@@ -82,13 +82,12 @@ module.exports.findUserByPhone = async (phone) => {
 
 //TODO: Create separate functions
 module.exports.editUserInfo = async (newInfo, userID) => {
-    var request_data = [newInfo.username, newInfo.email, newInfo.password, newInfo.phone, newInfo.role, newInfo.token, userID];
+    var request_data = [newInfo.username, newInfo.email, newInfo.password, newInfo.phone, newInfo.token, userID];
     var query = "UPDATE Users\
                 SET username = ?,\
                     email = ?,\
                     password=?,\
                     phone=?,\
-                    role=?,\
                     token=?\
                 WHERE id=?"
     var result = await asyncQuery(query, request_data);
@@ -96,4 +95,49 @@ module.exports.editUserInfo = async (newInfo, userID) => {
 
 module.exports.deleteUser = async (userID) => {
     throw "Not implemented yet";
+}
+
+module.exports.getStudent = async (studentID) => {
+    var request_data = [studentID]
+    var query = "Select\
+                A.first_name,\
+                A.second_name,\
+                A.middle_name,\
+                A.birthdate,\
+                B.id,\
+                B.username,\
+                B.email,\
+                B.phone,\
+                C.name\
+                From Students A join Users B on A.id = B.student\
+                join Roles C on B.role = C.id\
+                where A.id=?";
+    var result = await asyncQuery(query, request_data);
+    var returns = result[0];
+    returns["role"] = returns["name"]
+    delete  returns["name"]
+    return returns;
+}
+
+module.exports.findStudentByID = async (studentID) => {
+    var request_data = [studentID]
+    var query = "Select\
+                *\
+                From Students\
+                where id=?";
+    var result = await asyncQuery(query, request_data);
+    var returns = result[0];
+    return returns;
+}
+
+module.exports.editStudentInfo = async(student)=>{
+    var request_data = [student.first_name, student.second_name, student.middle_name, student.birthdate, student.image, student.id]
+    var query = "Update Students SET\
+	                first_name=?,\
+                    second_name=?,\
+                    middle_name=?,\
+                    birthdate=?,\
+                    image=?\
+                where id=?"
+    var result = await asyncQuery(query, request_data);
 }

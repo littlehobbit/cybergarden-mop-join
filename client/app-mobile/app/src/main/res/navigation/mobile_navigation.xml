@@ -3,10 +3,10 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/mobile_navigation"
-    app:startDestination="@+id/nav_home">
+    app:startDestination="@+id/nav_main">
 
     <fragment
-        android:id="@+id/nav_home"
+        android:id="@+id/nav_main"
         android:name="com.example.appmobile.ui.news.NewsFragment"
         android:label="@string/menu_home"
         tools:layout="@layout/fragment_news" />
@@ -18,7 +18,7 @@
         tools:layout="@layout/fragment_events" />
 
     <fragment
-        android:id="@+id/nav_slideshow"
+        android:id="@+id/nav_user"
         android:name="com.example.appmobile.ui.faculties.FacultiesFragment"
         android:label="@string/menu_slideshow"
         tools:layout="@layout/fragment_faculties" />

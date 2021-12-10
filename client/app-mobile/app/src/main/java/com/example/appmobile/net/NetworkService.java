@@ -11,6 +11,8 @@ public class NetworkService {
     private Retrofit mRetrofit;
     private String fullToken;
 
+    public static final String USER_IMAGE_URL = "http://192.168.43.124:3737/user/getImage?id=";
+
     private NetworkService() {
         mRetrofit = new Retrofit.Builder()
                 .baseUrl(BASE_URL)

@@ -45,7 +45,8 @@ public class SignUpScreen extends AppCompatActivity {
                             @Override
                             public void onResponse(@NonNull Call<Void> call, @NonNull Response<Void> response) {
                                 if(response.isSuccessful()) {
-                                    Intent intent = new Intent(SignUpScreen.this, MainScreen.class);
+                                    Toast.makeText(SignUpScreen.this, "Reg is success", Toast.LENGTH_SHORT).show();
+                                    Intent intent = new Intent(SignUpScreen.this, SignInScreen.class);
                                     startActivity(intent);
                                 }
                             }
@@ -53,7 +54,7 @@ public class SignUpScreen extends AppCompatActivity {
                             @Override
                             public void onFailure(@NonNull Call<Void> call, @NonNull Throwable t) {
 
-                                Toast.makeText(SignUpScreen.this, "Error while sign in", Toast.LENGTH_SHORT).show();
+                                Toast.makeText(SignUpScreen.this, "Error while sign up", Toast.LENGTH_SHORT).show();
                                 t.printStackTrace();
                             }
                         });

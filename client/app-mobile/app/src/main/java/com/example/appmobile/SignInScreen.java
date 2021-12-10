@@ -43,6 +43,7 @@ public class SignInScreen extends AppCompatActivity {
                                 if(response.isSuccessful()) {
                                     LoginResults loginResults = response.body();
 
+                                    Toast.makeText(SignInScreen.this, "Login success", Toast.LENGTH_SHORT).show();
 //                                    Intent intent = new Intent(SignInScreen.this, MainScreen.class);
 //                                    startActivity(intent);
                                 }

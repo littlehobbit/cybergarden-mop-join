@@ -1,4 +1,4 @@
-package com.example.appmobile;
+package com.example.appmobile.net.entries;
 
 import com.google.gson.annotations.SerializedName;
 
@@ -8,4 +8,8 @@ public class LoginResults {
 
     @SerializedName("token_type")
     String tokenType;
+
+    public String getFullToken() {
+        return tokenType + " " + token;
+    }
 }

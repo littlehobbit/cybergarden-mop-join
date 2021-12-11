@@ -17,8 +17,8 @@
         <androidx.constraintlayout.widget.ConstraintLayout
             android:id="@+id/constraintLayout2"
             android:layout_width="match_parent"
-            android:layout_height="120dp"
-            android:layout_marginTop="50dp"
+            android:layout_height="100dp"
+            android:layout_marginTop="20dp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent">
@@ -37,7 +37,7 @@
                     android:id="@+id/user_avatar"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    android:scaleType="fitCenter"
+                    android:scaleType="centerCrop"
                     tools:srcCompat="@tools:sample/avatars" />
 
             </androidx.cardview.widget.CardView>
@@ -60,7 +60,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="20dp"
-                android:layout_marginTop="8dp"
+                android:layout_marginTop="5dp"
                 android:text="dlaptev@sfedu.ru"
                 android:textSize="15sp"
                 app:layout_constraintStart_toEndOf="@+id/cardView"
@@ -71,7 +71,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="20dp"
-                android:layout_marginTop="6dp"
+                android:layout_marginTop="3dp"
                 android:text="Абитуриент"
                 android:textSize="12sp"
                 app:layout_constraintStart_toEndOf="@+id/cardView"
@@ -84,8 +84,9 @@
             android:id="@+id/linearLayout"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="50dp"
+            android:layout_marginTop="30dp"
             android:orientation="vertical"
+            android:layout_marginStart="15dp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/constraintLayout2">
@@ -94,9 +95,10 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Рекомендации"
-                android:textColor="@color/main_blue"
-                android:textSize="34sp"
-                android:textStyle="bold" />
+                android:textColor="@color/white"
+                android:background="@color/main_blue"
+                android:paddingHorizontal="5dp"
+                android:textSize="26sp" />
 
             <TextView
                 android:layout_width="match_parent"
@@ -104,18 +106,18 @@
                 android:layout_marginTop="5dp"
                 android:layout_marginEnd="20dp"
                 android:text="Список направлений, рекомендуемых к поступлению, наоснове ваших интересов и посещенных мероприятий"
-                android:textColor="@color/black"
-                android:textSize="14sp" />
+                android:textSize="14sp"
+                android:textColor="@color/black_text"/>
 
 
         </LinearLayout>
 
         <LinearLayout
+            android:layout_marginStart="15dp"
             android:id="@+id/no_recomendation_text"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="50dp"
-            android:gravity="center"
             android:orientation="vertical"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
@@ -134,17 +136,19 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="10dp"
                 android:text="На данный момент мы не можем порекомендовать вам направление. Пройдите тест или выберите мероприятия для определения вашиъ предпочтений"
-                android:textAlignment="center"
-                android:textSize="16sp" />
+                android:textSize="16sp"
+                android:textColor="@color/black_text"/>
 
         </LinearLayout>
 
         <androidx.recyclerview.widget.RecyclerView
+            android:layout_marginEnd="5dp"
+            android:layout_marginStart="15dp"
             android:id="@+id/recomendation_list"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_gravity="center_horizontal"
-            android:layout_marginTop="50dp"
+            android:layout_marginTop="14dp"
             android:fadeScrollbars="true"
             android:nestedScrollingEnabled="false"
             app:layout_constraintEnd_toEndOf="parent"

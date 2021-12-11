@@ -62,7 +62,7 @@ public class NewsFragment extends Fragment {
                     @Override
                     public void onResponse(@NonNull Call<ArrayList<NewsListResults>> call, @NonNull Response<ArrayList<NewsListResults>> response) {
                         if(response.isSuccessful()) {
-                            Toast.makeText(getContext(), "Get events list, yeeeee", Toast.LENGTH_SHORT).show();
+                            Toast.makeText(getContext(), "Get news list, yeeeee", Toast.LENGTH_SHORT).show();
                             adapter.addAll(response.body());
                             recyclerView.setAdapter(adapter);
                         }
@@ -71,7 +71,7 @@ public class NewsFragment extends Fragment {
                     @Override
                     public void onFailure(@NonNull Call<ArrayList<NewsListResults>> call, @NonNull Throwable t) {
 
-                        Toast.makeText(getContext(), "Error while you get events list", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(getContext(), "Error while you get news list", Toast.LENGTH_SHORT).show();
                         t.printStackTrace();
                     }
                 });

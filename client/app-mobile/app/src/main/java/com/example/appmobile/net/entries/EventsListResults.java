@@ -30,6 +30,16 @@ public class EventsListResults {
     
     ArrayList<Tag> tags;
 
+    boolean isDescriptionShown = false;
+
+    public boolean getIsDescriptionShown() {
+        return isDescriptionShown;
+    }
+
+    public void swapIsDescriptionShown() {
+        isDescriptionShown = !isDescriptionShown;
+    }
+
     public Integer getId() {
         return id;
     }

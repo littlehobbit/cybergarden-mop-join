@@ -11,7 +11,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical"
-        android:paddingStart="20dp"
+        android:paddingStart="10dp"
         >
 
         <androidx.constraintlayout.widget.ConstraintLayout
@@ -42,11 +42,11 @@
                 android:id="@+id/user_fio"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="8dp"
+                android:layout_marginStart="20dp"
                 android:layout_marginTop="20dp"
                 android:text="Лаптев Данила Васильевич"
                 android:textColor="@color/black"
-                android:textSize="16sp"
+                android:textSize="18sp"
                 android:textStyle="bold"
                 app:layout_constraintStart_toEndOf="@+id/cardView"
                 app:layout_constraintTop_toTopOf="parent" />
@@ -55,10 +55,10 @@
                 android:id="@+id/user_email"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="8dp"
-                android:layout_marginTop="6dp"
+                android:layout_marginStart="20dp"
+                android:layout_marginTop="8dp"
                 android:text="dlaptev@sfedu.ru"
-                android:textSize="13sp"
+                android:textSize="15sp"
                 app:layout_constraintStart_toEndOf="@+id/cardView"
                 app:layout_constraintTop_toBottomOf="@+id/user_fio" />
 
@@ -66,10 +66,10 @@
                 android:id="@+id/user_role"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="8dp"
+                android:layout_marginStart="20dp"
                 android:layout_marginTop="6dp"
                 android:text="Абитуриент"
-                android:textSize="10sp"
+                android:textSize="12sp"
                 app:layout_constraintStart_toEndOf="@+id/cardView"
                 app:layout_constraintTop_toBottomOf="@+id/user_email" />
 
@@ -77,21 +77,20 @@
         </androidx.constraintlayout.widget.ConstraintLayout>
 
         <LinearLayout
-
             android:layout_marginTop="30dp"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="vertical"
-            android:layout_marginStart="20dp"
+            android:layout_marginStart="5dp"
             android:layout_marginEnd="10dp">
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Рекомендации"
-                android:textSize="24sp"
-                android:textStyle="bold"
-                android:textColor="@color/main_blue"/>
+                android:textColor="@color/main_blue"
+                android:textSize="34sp"
+                android:textStyle="bold" />
 
             <TextView
                 android:layout_width="match_parent"
@@ -100,7 +99,7 @@
                 android:layout_marginEnd="20dp"
                 android:text="Список направлений, рекомендуемых к поступлению, наоснове ваших интересов и посещенных мероприятий"
                 android:textColor="@color/black"
-                android:textSize="12sp" />
+                android:textSize="14sp" />
 
 
         </LinearLayout>
@@ -120,15 +119,16 @@
                 android:layout_height="wrap_content"
                 android:text="Нет рекомендаций :("
                 android:textColor="@color/main_blue"
-                android:textSize="20sp"
+                android:textSize="24sp"
                 android:textStyle="bold" />
 
             <TextView
-                android:textAlignment="center"
-                android:layout_marginTop="10dp"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="На данный момент мы не можем порекомендовать вам направление. Пройдите тест или выберите мероприятия для определения вашиъ предпочтений"/>
+                android:layout_marginTop="10dp"
+                android:text="На данный момент мы не можем порекомендовать вам направление. Пройдите тест или выберите мероприятия для определения вашиъ предпочтений"
+                android:textAlignment="center"
+                android:textSize="16sp" />
 
         </LinearLayout>
 
@@ -137,8 +137,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="20dp"
-            android:layout_marginStart="20dp"
-            android:layout_marginEnd="30dp"
+            android:nestedScrollingEnabled="false"
             />
 
 

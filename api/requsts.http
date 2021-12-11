@@ -1,0 +1,134 @@
+### Registration using json
+POST http://192.168.43.124:3737/auth/register
+Content-Type: application/json
+
+{
+    "email":"nkutovoy@sfedu.ru",
+    "password": "hello"
+}
+
+### Registration using urlencoded
+
+POST http://192.168.43.124:3737/auth/register
+Content-Type: application/x-www-form-urlencoded
+
+email=nkutovoy@sfedu.ru&password=hello
+
+### Login
+
+POST http://192.168.43.124:3737/auth/login
+Content-Type: application/json
+
+{
+    "identifier":"nkutovoy@sfedu.ru",
+    "password":"hello"
+}
+
+### Logout
+
+GET http://192.168.43.124:3737/auth/logout
+authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MiwiaWF0IjoxNjM1OTUyNTkzfQ.goiMhOCmb_6zOdpLhRD_sEbwu5ULnKkv6LjVsCZnHz8
+
+### Edit data
+
+POST http://192.168.43.124:3737/auth/edit
+authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6Miwic3R1ZGVudCI6NCwiaWF0IjoxNjM5MTc4Nzc2fQ.CAmc28pI41b6Af-8NWWHbH34pjfFdInAsGDxK-lTEU8
+Content-Type: application/json
+
+{
+    "password":"1"
+}
+
+### Get data
+
+GET http://192.168.43.124:3737/auth/get
+authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwiaWF0IjoxNjM1OTQ5NjkwfQ.BEEIVduaKDU4Ba5pfvZU3nCvky5ET4k7HEYukfQuf50
+
+###
+
+GET http://192.168.43.124:3737/auth/forgotPassword
+Content-Type: application/json
+
+{
+    "email":"nikita.kutovoy@gmail.com"
+}
+
+###
+
+POST http://192.168.43.124:3737/auth/forgotPassword
+Content-Type: application/json
+
+{
+   "email": "nikita.kutovoy@gmail.com",
+   "code":"WyKgK4uoOg" 
+}
+
+###
+
+GET http://192.168.43.124:3737/user/user
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6Miwic3R1ZGVudCI6NCwiaWF0IjoxNjM5MTY4NTI2fQ.kpAPZjCJB9jXm3aSSifZFLOSFSl4IPJEN6zq_zjovws
+
+###
+
+GET http://192.168.43.124:3737/events/getImage?id=4
+Content-Type: application/json
+
+###Порядок отправки частей важен
+POST http://192.168.43.124:3737/user/setImage
+Content-Type: multipart/form-data; boundary=MyBoundary
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6Miwic3R1ZGVudCI6NCwiaWF0IjoxNjM5MTY0NTc0fQ.yW_mZLAF86HAalT15dIJz-vn4MTya6iQ9kpdRqo6bYM
+
+--MyBoundary
+Content-Disposition: form-data; name="image"; filename="1.png"
+Content-Type: image/png
+
+< .\1.png
+
+--MyBoundary--
+
+###
+
+GET http://192.168.43.124:3737/events/all
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6Miwic3R1ZGVudCI6NCwiaWF0IjoxNjM5MTc1NTE5fQ.ZwIGIbrhTFTWzE0UpFj90-CmcTYMBpkfINHQQkT6t1I
+
+
+###
+
+POST http://192.168.43.124:3737/events/join
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6Miwic3R1ZGVudCI6NCwiaWF0IjoxNjM5MTg3NzUzfQ.8_zmx8p6tMW1EFjZdhGEFatrXvCwKDah_38wKVdLYU8
+Content-Type: application/json
+
+{
+    "event_id" : 4
+}
+
+###
+
+GET http://192.168.43.124:3737/news/all
+
+###
+
+GET http://192.168.43.124:3737/user/getImage?id=1
+
+###
+
+POST http://192.168.43.124:3737/news/read
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwic3R1ZGVudCI6MywiaWF0IjoxNjM5MjA1MTQ1fQ.rOeBJ_MFA1XqXkSdAVd_H4yFHVJbO1v1WsNkTV-aAdw
+Content-Type: application/json
+
+{
+    "news_id":5
+}
+
+###
+
+Get http://192.168.43.124:3737/specialization/all
+
+###
+
+Get http://192.168.43.124:3737/specialization/recommendation
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwic3R1ZGVudCI6MywiaWF0IjoxNjM5MjA1MTQ1fQ.rOeBJ_MFA1XqXkSdAVd_H4yFHVJbO1v1WsNkTV-aAdw
+
+###
+
+Get http://192.168.43.124:3737/qna/all

@@ -2,8 +2,18 @@ package com.example.appmobile;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.content.res.AppCompatResources;
+import androidx.core.content.ContextCompat;
 
+import android.app.NotificationChannel;
+import android.app.NotificationManager;
+import android.content.Context;
 import android.content.Intent;
+import android.graphics.Color;
+import android.graphics.PorterDuff;
+import android.graphics.PorterDuffColorFilter;
+import android.graphics.drawable.Drawable;
+import android.os.Build;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -29,6 +39,7 @@ public class SignInScreen extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        getSupportActionBar().hide();
         setContentView(R.layout.sign_in_screen);
         getSupportActionBar().setTitle("Вход в приложение");
 
@@ -36,6 +47,7 @@ public class SignInScreen extends AppCompatActivity {
         password = findViewById(R.id.password_sign_in);
 
         btnSignIn = findViewById(R.id.btn_sign_in);
+        Context ctx = this;
         btnSignIn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -43,6 +55,19 @@ public class SignInScreen extends AppCompatActivity {
                     Intent intent = new Intent(SignInScreen.this, MainActivity.class);
                     startActivity(intent);
                     return;
+                }
+
+                login.setBackground(AppCompatResources.getDrawable(ctx, R.drawable.input_field_bsckground));
+                for (Drawable drawable : login.getCompoundDrawables()) {
+                    if (drawable != null) {
+                        drawable.setColorFilter(new PorterDuffColorFilter(getColor(R.color.main_blue), PorterDuff.Mode.SRC_IN));
+                    }
+                }
+                password.setBackground(AppCompatResources.getDrawable(ctx, R.drawable.input_field_bsckground));
+                for (Drawable drawable : password.getCompoundDrawables()) {
+                    if (drawable != null) {
+                        drawable.setColorFilter(new PorterDuffColorFilter(getColor(R.color.main_blue), PorterDuff.Mode.SRC_IN));
+                    }
                 }
 
                 NetworkService.getInstance()
@@ -58,6 +83,20 @@ public class SignInScreen extends AppCompatActivity {
                                     Toast.makeText(SignInScreen.this, "Login success", Toast.LENGTH_SHORT).show();
                                     Intent intent = new Intent(SignInScreen.this, MainActivity.class);
                                     startActivity(intent);
+                                }
+                                else{
+                                    login.setBackground(AppCompatResources.getDrawable(ctx, R.drawable.error_input_field_background));
+                                    for (Drawable drawable : login.getCompoundDrawables()) {
+                                        if (drawable != null) {
+                                            drawable.setColorFilter(new PorterDuffColorFilter(getColor(R.color.main_error), PorterDuff.Mode.SRC_IN));
+                                        }
+                                    }
+                                    password.setBackground(AppCompatResources.getDrawable(ctx, R.drawable.error_input_field_background));
+                                    for (Drawable drawable : password.getCompoundDrawables()) {
+                                        if (drawable != null) {
+                                            drawable.setColorFilter(new PorterDuffColorFilter(getColor(R.color.main_error), PorterDuff.Mode.SRC_IN));
+                                        }
+                                    }
                                 }
                             }
 
@@ -79,5 +118,21 @@ public class SignInScreen extends AppCompatActivity {
                 startActivity(intent);
             }
         });
+
+        Thread t = new Thread(){
+            @Override
+            public synchronized void start() {
+                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+                    CharSequence name = "ИКТИБ Абитуриентам";
+                    String description = "ИКТИБ Абитуриентам";
+                    int importance = NotificationManager.IMPORTANCE_DEFAULT;
+                    NotificationChannel channel = new NotificationChannel("ИКТИБ Абитуриентам", name, importance);
+                    channel.setDescription(description);
+                    NotificationManager notificationManager = getSystemService(NotificationManager.class);
+                    notificationManager.createNotificationChannel(channel);
+                }
+            }
+        };
+        t.start();
     }
 }

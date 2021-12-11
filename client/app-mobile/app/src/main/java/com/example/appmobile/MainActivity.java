@@ -1,13 +1,14 @@
 package com.example.appmobile;
 
-import android.app.ActivityManager;
-import android.content.Context;
-import android.content.Intent;
 import android.os.Bundle;
 import android.view.Menu;
 
+import com.example.appmobile.net.NetworkService;
+import com.example.appmobile.net.entries.NewsListResults;
 import com.google.android.material.navigation.NavigationView;
 
+import androidx.core.app.NotificationCompat;
+import androidx.core.app.NotificationManagerCompat;
 import androidx.navigation.NavController;
 import androidx.navigation.Navigation;
 import androidx.navigation.ui.AppBarConfiguration;
@@ -17,23 +18,20 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.appmobile.databinding.ActivityMainBinding;
 
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Timer;
+import java.util.TimerTask;
+
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
+
 public class MainActivity extends AppCompatActivity {
 
     private AppBarConfiguration mAppBarConfiguration;
     private ActivityMainBinding binding;
-    private NewsDaemon newsDaemon;
-    Intent mIntent;
-
-    private boolean isMyServiceRunning(Class<?> serviceClass) {
-        ActivityManager manager = (ActivityManager) getSystemService(Context.ACTIVITY_SERVICE);
-        for (ActivityManager.RunningServiceInfo service : manager.getRunningServices(Integer.MAX_VALUE)) {
-            if (serviceClass.getName().equals(service.service.getClassName())) {
-                return true;
-            }
-        }
-        return false;
-    }
-
+    int id = 0;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -42,11 +40,55 @@ public class MainActivity extends AppCompatActivity {
         binding = ActivityMainBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
 
-        newsDaemon = new NewsDaemon();
-        mIntent = new Intent(this, newsDaemon.getClass());
-        if (!isMyServiceRunning(newsDaemon.getClass())) {
-            startService(mIntent);
-        }
+        Timer timer = new Timer(true);
+        TimerTask task = new TimerTask() {
+            boolean inited;
+            List<NewsListResults> oldNews;
+
+            @Override
+            public void run() {
+                if(inited){
+                    NetworkService.getInstance().getJSONApi().getNewsList().enqueue(new Callback<ArrayList<NewsListResults>>() {
+                        @Override
+                        public void onResponse(Call<ArrayList<NewsListResults>> call, Response<ArrayList<NewsListResults>> response) {
+                            if(response.isSuccessful()){
+                                NotificationCompat.Builder builder = new NotificationCompat.Builder(getApplicationContext(), "ИКТИБ Абитуриентам")
+                                        .setSmallIcon(R.drawable.ic_logo)
+                                        .setContentTitle("Fresh news")
+                                        .setContentText("aboba")
+                                        .setPriority(NotificationCompat.PRIORITY_DEFAULT)
+                                        .setAutoCancel(true);
+                                NotificationManagerCompat nm = NotificationManagerCompat.from(getApplicationContext());
+                                nm.notify(id++, builder.build());
+                            }
+                        }
+
+                        @Override
+                        public void onFailure(Call<ArrayList<NewsListResults>> call, Throwable t) {
+
+                        }
+                    });
+                }
+                else {
+                    NetworkService.getInstance().getJSONApi().getNewsList().enqueue(new Callback<ArrayList<NewsListResults>>() {
+                        @Override
+                        public void onResponse(Call<ArrayList<NewsListResults>> call, Response<ArrayList<NewsListResults>> response) {
+                            if(response.isSuccessful()){
+                                oldNews = new ArrayList<>(response.body());
+                                inited = true;
+                            }
+                        }
+
+                        @Override
+                        public void onFailure(Call<ArrayList<NewsListResults>> call, Throwable t) {
+
+                        }
+                    });
+                }
+            }
+        };
+
+        timer.schedule(task, 30000, 30000);
 
         setSupportActionBar(binding.appBarMain.toolbar);
         DrawerLayout drawer = binding.drawerLayout;
@@ -54,7 +96,7 @@ public class MainActivity extends AppCompatActivity {
         // Passing each menu ID as a set of Ids because each
         // menu should be considered as top level destinations.
         mAppBarConfiguration = new AppBarConfiguration.Builder(
-                R.id.nav_news, R.id.nav_events, R.id.nav_user)
+                R.id.nav_news, R.id.nav_events, R.id.nav_spec, R.id.nav_user, R.id.nav_qa)
                 .setOpenableLayout(drawer)
                 .build();
         NavController navController = Navigation.findNavController(this, R.id.nav_host_fragment_content_main);
@@ -67,15 +109,5 @@ public class MainActivity extends AppCompatActivity {
         NavController navController = Navigation.findNavController(this, R.id.nav_host_fragment_content_main);
         return NavigationUI.navigateUp(navController, mAppBarConfiguration)
                 || super.onSupportNavigateUp();
-    }
-
-    @Override
-    protected void onDestroy() {
-        stopService(mIntent);
-        Intent broadcastIntent = new Intent();
-        broadcastIntent.setAction("restartservice");
-        broadcastIntent.setClass(this, Restarter.class);
-        this.sendBroadcast(broadcastIntent);
-        super.onDestroy();
     }
 }

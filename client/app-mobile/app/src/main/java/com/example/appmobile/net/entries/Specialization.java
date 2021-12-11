@@ -2,7 +2,9 @@ package com.example.appmobile.net.entries;
 
 import com.google.gson.annotations.SerializedName;
 
-public class Recommendation {
+import java.util.ArrayList;
+
+public class Specialization {
     private Integer id;
     private String codificator;
     private String title;
@@ -12,6 +14,8 @@ public class Recommendation {
     private String tagType;
     private String description;
     private Integer weight;
+
+    public ArrayList<Ege> ege;
 
     public Integer getId() {
         return id;
@@ -42,7 +46,7 @@ public class Recommendation {
     }
 
 
-    public Recommendation(Integer id,
+    public Specialization(Integer id,
                           String codificator,
                           String title,
                           String tagGrad,

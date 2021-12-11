@@ -5,6 +5,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
@@ -16,15 +17,12 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.example.appmobile.R;
 import com.example.appmobile.adapters.RecommendationListAdapter;
 import com.example.appmobile.databinding.FragmentProfileBinding;
-import com.example.appmobile.net.JSONPlaceHolderApi;
 import com.example.appmobile.net.NetworkService;
-import com.example.appmobile.net.entries.NewsListResults;
-import com.example.appmobile.net.entries.Recommendation;
+import com.example.appmobile.net.entries.Specialization;
 import com.example.appmobile.net.entries.User;
 import com.example.appmobile.viewmodels.UserViewModel;
 import com.squareup.picasso.Picasso;
 
-import java.security.Provider;
 import java.util.ArrayList;
 
 import retrofit2.Call;
@@ -65,23 +63,30 @@ public class ProfileFragment extends Fragment {
 
         LinearLayoutManager linearLayoutManager = new LinearLayoutManager(getContext());
 
+        LinearLayout failedBlock = view.findViewById(R.id.no_recomendation_text);
+        failedBlock.setVisibility(View.INVISIBLE);
+
         NetworkService.getInstance()
                 .getJSONApi()
                 .getUserRecomendations(NetworkService.getInstance().getToken())
-                .enqueue(new Callback<ArrayList<Recommendation>>() {
+                .enqueue(new Callback<ArrayList<Specialization>>() {
                     @Override
-                    public void onResponse(@NonNull Call<ArrayList<Recommendation>> call, @NonNull Response<ArrayList<Recommendation>> response) {
+                    public void onResponse(@NonNull Call<ArrayList<Specialization>> call, @NonNull Response<ArrayList<Specialization>> response) {
                         if(response.isSuccessful()) {
-                            Toast.makeText(getContext(), "Get user recommendations, yeeeee", Toast.LENGTH_SHORT).show();
-                            adapter.setList(response.body());
-                            recommendationList.setLayoutManager(linearLayoutManager);
-                            recommendationList.setAdapter(adapter);
-                            //recommendationList.getLayoutParams().height = response.body().size() * 220;
+                            if (response.body().size() != 0) {
+                                failedBlock.setVisibility(View.GONE);
+                                adapter.setList(response.body());
+                                recommendationList.setLayoutManager(linearLayoutManager);
+                                recommendationList.setAdapter(adapter);
+                            } else {
+                                recommendationList.setVisibility(View.GONE);
+                                failedBlock.setVisibility(View.VISIBLE);
+                            }
                         }
                     }
 
                     @Override
-                    public void onFailure(@NonNull Call<ArrayList<Recommendation>> call, @NonNull Throwable t) {
+                    public void onFailure(@NonNull Call<ArrayList<Specialization>> call, @NonNull Throwable t) {
 
                         Toast.makeText(getContext(), "Error while you get recommendations", Toast.LENGTH_SHORT).show();
                         t.printStackTrace();

@@ -9,11 +9,11 @@
         android:id="@+id/nav_news"
         android:name="com.example.appmobile.ui.news.NewsFragment"
         android:label="Новости ИКТИБ"
-        tools:layout="@layout/fragment_news"
+        tools:layout="@layout/fragment_news">
         <action
             android:id="@+id/to_selectedNews"
             app:destination="@id/selectednewsFragment" />
-        />
+    </fragment>
 
     <fragment
         android:id="@+id/nav_events"

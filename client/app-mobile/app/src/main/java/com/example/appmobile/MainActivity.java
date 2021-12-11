@@ -52,14 +52,19 @@ public class MainActivity extends AppCompatActivity {
                         @Override
                         public void onResponse(Call<ArrayList<NewsListResults>> call, Response<ArrayList<NewsListResults>> response) {
                             if(response.isSuccessful()){
-                                NotificationCompat.Builder builder = new NotificationCompat.Builder(getApplicationContext(), "ИКТИБ Абитуриентам")
-                                        .setSmallIcon(R.drawable.ic_logo)
-                                        .setContentTitle("Fresh news")
-                                        .setContentText("aboba")
-                                        .setPriority(NotificationCompat.PRIORITY_DEFAULT)
-                                        .setAutoCancel(true);
-                                NotificationManagerCompat nm = NotificationManagerCompat.from(getApplicationContext());
-                                nm.notify(id++, builder.build());
+                                List<NewsListResults> newNews = new ArrayList<>(response.body());
+                                if(newNews.size() > oldNews.size()) {
+                                    for(int i = newNews.size() - oldNews.size() - 1; i >=0; i--){
+                                        NotificationCompat.Builder builder = new NotificationCompat.Builder(getApplicationContext(), "ИКТИБ Абитуриентам")
+                                            .setSmallIcon(R.drawable.ic_logo)
+                                            .setContentTitle(newNews.get(i).getTitle())
+                                            .setPriority(NotificationCompat.PRIORITY_DEFAULT)
+                                            .setAutoCancel(true);
+                                        NotificationManagerCompat nm = NotificationManagerCompat.from(getApplicationContext());
+                                        nm.notify(id++, builder.build());
+                                    }
+                                }
+                                oldNews = newNews;
                             }
                         }
 

@@ -13,6 +13,7 @@ import com.example.appmobile.net.entries.Recommendation;
 import com.google.android.material.progressindicator.LinearProgressIndicator;
 
 import java.util.ArrayList;
+import java.util.Comparator;
 
 public class RecommendationListAdapter extends RecyclerView.Adapter<RecommendationListAdapter.ItemHolder> {
 
@@ -20,8 +21,10 @@ public class RecommendationListAdapter extends RecyclerView.Adapter<Recommendati
 
     public static class ItemHolder extends  RecyclerView.ViewHolder {
 
+        Recommendation recommendation;
         TextView title;
         TextView specNum;
+        TextView desc;
         LinearProgressIndicator progressIndicator;
         TextView percent;
 
@@ -32,19 +35,23 @@ public class RecommendationListAdapter extends RecyclerView.Adapter<Recommendati
             title = itemView.findViewById(R.id.spec_name);
             progressIndicator = itemView.findViewById(R.id.recomendation_percent_bar);
             percent = itemView.findViewById(R.id.recomendation_percent);
+            desc = itemView.findViewById(R.id.spec_desc);
         }
 
         public void setData(Recommendation recommendation) {
+            this.recommendation = recommendation;
             specNum.setText(recommendation.getCodificator());
             title.setText(recommendation.getTitle());
             progressIndicator.setProgress(recommendation.getWeight());
             percent.setText(recommendation.getWeight().toString() + "%");
+            desc.setText(recommendation.getTagGrad() + "\nВозможности трудоустройства: " + recommendation.getDescription());
         }
 
     }
 
     public void setList(ArrayList<Recommendation> list) {
         recommendationList = list;
+        recommendationList.sort((lhs, rhs) -> Integer.compare(rhs.getWeight(), lhs.getWeight()));
         notifyDataSetChanged();
     }
 

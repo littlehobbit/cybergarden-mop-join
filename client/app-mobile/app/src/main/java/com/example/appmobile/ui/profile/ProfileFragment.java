@@ -5,6 +5,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
@@ -65,6 +66,9 @@ public class ProfileFragment extends Fragment {
 
         LinearLayoutManager linearLayoutManager = new LinearLayoutManager(getContext());
 
+        LinearLayout failedBlock = view.findViewById(R.id.no_recomendation_text);
+        failedBlock.setVisibility(View.INVISIBLE);
+
         NetworkService.getInstance()
                 .getJSONApi()
                 .getUserRecomendations(NetworkService.getInstance().getToken())
@@ -72,11 +76,15 @@ public class ProfileFragment extends Fragment {
                     @Override
                     public void onResponse(@NonNull Call<ArrayList<Recommendation>> call, @NonNull Response<ArrayList<Recommendation>> response) {
                         if(response.isSuccessful()) {
-                            Toast.makeText(getContext(), "Get user recommendations, yeeeee", Toast.LENGTH_SHORT).show();
-                            adapter.setList(response.body());
-                            recommendationList.setLayoutManager(linearLayoutManager);
-                            recommendationList.setAdapter(adapter);
-                            //recommendationList.getLayoutParams().height = response.body().size() * 220;
+                            if (response.body().size() != 0) {
+                                failedBlock.setVisibility(View.GONE);
+                                adapter.setList(response.body());
+                                recommendationList.setLayoutManager(linearLayoutManager);
+                                recommendationList.setAdapter(adapter);
+                            } else {
+                                recommendationList.setVisibility(View.GONE);
+                                failedBlock.setVisibility(View.VISIBLE);
+                            }
                         }
                     }
 

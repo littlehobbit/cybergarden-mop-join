@@ -13,7 +13,7 @@
             android:icon="@drawable/ic_baseline_event_24"
             android:title="События" />
         <item
-            android:id="@+id/nav_QA"
+            android:id="@+id/nav_qa"
             android:icon="@drawable/ic_baseline_chat_24"
             android:title="QA" />
         <item

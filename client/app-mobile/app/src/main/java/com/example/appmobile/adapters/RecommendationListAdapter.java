@@ -12,7 +12,6 @@ import com.example.appmobile.R;
 import com.example.appmobile.net.entries.Recommendation;
 import com.google.android.material.progressindicator.LinearProgressIndicator;
 
-import java.lang.reflect.Array;
 import java.util.ArrayList;
 
 public class RecommendationListAdapter extends RecyclerView.Adapter<RecommendationListAdapter.ItemHolder> {
@@ -21,24 +20,32 @@ public class RecommendationListAdapter extends RecyclerView.Adapter<Recommendati
 
     public static class ItemHolder extends  RecyclerView.ViewHolder {
 
-        TextView faculty;
+        TextView specName;
+        TextView specNum;
         LinearProgressIndicator progressIndicator;
         TextView percent;
 
         public ItemHolder(@NonNull View itemView) {
             super(itemView);
 
-            faculty = itemView.findViewById(R.id.faculty_name);
+            specNum = itemView.findViewById(R.id.spec_number);
+            specName = itemView.findViewById(R.id.spec_name);
             progressIndicator = itemView.findViewById(R.id.recomendation_percent_bar);
             percent = itemView.findViewById(R.id.recomendation_percent);
         }
 
         public void setData(Recommendation recommendation) {
-            faculty.setText(String.join(" - ", recommendation.specializationNumber, recommendation.specializationName));
+            specNum.setText(recommendation.specializationNumber);
+            specName.setText(recommendation.specializationName);
             progressIndicator.setProgress(recommendation.percent);
             percent.setText(recommendation.percent.toString() + "%");
         }
 
+    }
+
+    public void serList(ArrayList<Recommendation> list) {
+        recommendationList = list;
+        notifyDataSetChanged();
     }
 
     @NonNull
@@ -52,11 +59,11 @@ public class RecommendationListAdapter extends RecyclerView.Adapter<Recommendati
 
     @Override
     public void onBindViewHolder(@NonNull RecommendationListAdapter.ItemHolder holder, int position) {
-
+        holder.setData(recommendationList.get(position));
     }
 
     @Override
     public int getItemCount() {
-        return 0;
+        return recommendationList.size();
     }
 }

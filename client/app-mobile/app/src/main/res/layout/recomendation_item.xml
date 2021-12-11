@@ -25,20 +25,11 @@
                 android:layout_height="wrap_content"
                 android:orientation="horizontal">
 
-                <TextView
-                    android:id="@+id/spec_number"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="09.04.03"
-                    android:textColor="@color/black_text"
-                    android:textSize="14sp"
-                    android:textStyle="bold" />
 
                 <TextView
                     android:id="@+id/spec_name"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginStart="4dp"
                     android:text="Программная инженерия"
                     android:textColor="@color/main_blue"
                     android:textSize="14sp"

@@ -5,6 +5,7 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -16,9 +17,16 @@ import com.example.appmobile.NewsRecyclerAdapter;
 import com.example.appmobile.NewsCardData;
 import com.example.appmobile.R;
 import com.example.appmobile.databinding.FragmentNewsBinding;
+import com.example.appmobile.net.NetworkService;
+import com.example.appmobile.net.entries.EventsListResults;
+import com.example.appmobile.net.entries.NewsListResults;
 import com.example.appmobile.viewmodels.UserViewModel;
 
 import java.util.ArrayList;
+
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
 
 public class NewsFragment extends Fragment {
 
@@ -46,21 +54,29 @@ public class NewsFragment extends Fragment {
         super.onViewCreated(view, savedInstanceState);
         recyclerView = view.findViewById(R.id.news_list);
         adapter.clearAll();
-        ArrayList<NewsCardData> recyclerData = new ArrayList<>();
 
-        recyclerData.add(new NewsCardData("День открытых дверей", "День открытых дверей пройдет онлайн в 10:00 бакалавриат и в 11:00 магистратура\n" +
-                "Для абитуриентов, поступающих на образовательные программы Академии психологии и педагогики, предлагается дополнительно программа образовательного интенсива, который проводится в рамках Дней открытых дверей АПП ЮФУ.", "1"));
-        recyclerData.add(new NewsCardData("День открытых дверей", "День открытых дверей пройдет онлайн в 10:00 бакалавриат и в 11:00 магистратура\n" +
-                "Для абитуриентов, поступающих на образовательные программы Академии психологии и педагогики, предлагается дополнительно программа образовательного интенсива, который проводится в рамках Дней открытых дверей АПП ЮФУ.", "1"));
-        recyclerData.add(new NewsCardData("День открытых дверей", "День открытых дверей пройдет онлайн в 10:00 бакалавриат и в 11:00 магистратура\n" +
-                "Для абитуриентов, поступающих на образовательные программы Академии психологии и педагогики, предлагается дополнительно программа образовательного интенсива, который проводится в рамках Дней открытых дверей АПП ЮФУ.", "1"));
-        recyclerData.add(new NewsCardData("День открытых дверей", "День открытых дверей пройдет онлайн в 10:00 бакалавриат и в 11:00 магистратура\n" +
-                "Для абитуриентов, поступающих на образовательные программы Академии психологии и педагогики, предлагается дополнительно программа образовательного интенсива, который проводится в рамках Дней открытых дверей АПП ЮФУ.", "1"));
-        recyclerData.add(new NewsCardData("День открытых дверей", "День открытых дверей пройдет онлайн в 10:00 бакалавриат и в 11:00 магистратура\n" +
-                "Для абитуриентов, поступающих на образовательные программы Академии психологии и педагогики, предлагается дополнительно программа образовательного интенсива, который проводится в рамках Дней открытых дверей АПП ЮФУ.", "1"));
+        NetworkService.getInstance()
+                .getJSONApi()
+                .getNewsList()
+                .enqueue(new Callback<ArrayList<NewsListResults>>() {
+                    @Override
+                    public void onResponse(@NonNull Call<ArrayList<NewsListResults>> call, @NonNull Response<ArrayList<NewsListResults>> response) {
+                        if(response.isSuccessful()) {
+                            Toast.makeText(getContext(), "Get news list, yeeeee", Toast.LENGTH_SHORT).show();
+                            adapter.addAll(response.body());
+                            recyclerView.setAdapter(adapter);
+                        }
+                    }
 
-        adapter.addAll(recyclerData);
-        recyclerView.setAdapter(adapter);
+                    @Override
+                    public void onFailure(@NonNull Call<ArrayList<NewsListResults>> call, @NonNull Throwable t) {
+
+                        Toast.makeText(getContext(), "Error while you get news list", Toast.LENGTH_SHORT).show();
+                        t.printStackTrace();
+                    }
+                });
+
+
     }
 
     @Override

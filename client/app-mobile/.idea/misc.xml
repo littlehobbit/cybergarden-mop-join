@@ -8,8 +8,6 @@
         <entry key="..\:/Hackaton/client/app-mobile/app/src/main/res/layout/content_main.xml" value="0.25" />
         <entry key="..\:/Hackaton/client/app-mobile/app/src/main/res/layout/fragment_gallery.xml" value="0.20520833333333333" />
         <entry key="..\:/Hackaton/client/app-mobile/app/src/main/res/layout/fragment_home.xml" value="0.16" />
-        <entry key="..\:/Hackaton/client/app-mobile/app/src/main/res/layout/fragment_profile.xml" value="0.33" />
-        <entry key="..\:/Hackaton/client/app-mobile/app/src/main/res/layout/recomendation_item.xml" value="0.33" />
         <entry key="..\:/Users/Danila/Documents/cybergarden-mop-join/client/app-mobile/app/src/main/res/drawable/ic_launcher_background.xml" value="0.3828125" />
         <entry key="..\:/Users/Danila/Documents/cybergarden-mop-join/client/app-mobile/app/src/main/res/drawable/ic_menu_slideshow.xml" value="0.3828125" />
         <entry key="..\:/Users/Danila/Documents/cybergarden-mop-join/client/app-mobile/app/src/main/res/drawable/rounded_img.xml" value="0.3828125" />
@@ -18,7 +16,8 @@
         <entry key="..\:/Users/Danila/Documents/cybergarden-mop-join/client/app-mobile/app/src/main/res/layout/app_bar_main.xml" value="0.36666666666666664" />
         <entry key="..\:/Users/Danila/Documents/cybergarden-mop-join/client/app-mobile/app/src/main/res/layout/fragment_news.xml" value="0.286231884057971" />
         <entry key="..\:/Users/Danila/Documents/cybergarden-mop-join/client/app-mobile/app/src/main/res/layout/item_adapter.xml" value="0.33" />
-        <entry key="..\:/Users/Danila/Documents/cybergarden-mop-join/client/app-mobile/app/src/main/res/layout/nav_header_main.xml" value="0.286231884057971" />
+        <entry key="..\:/Users/Danila/Documents/cybergarden-mop-join/client/app-mobile/app/src/main/res/layout/nav_header_main.xml" value="0.5" />
+        <entry key="..\:/Users/Danila/Documents/cybergarden-mop-join/client/app-mobile/app/src/main/res/layout/news_item_adapter.xml" value="0.37621023513139695" />
         <entry key="..\:/Users/Danila/Documents/cybergarden-mop-join/client/app-mobile/app/src/main/res/layout/rounded_img.xml" value="0.36666666666666664" />
         <entry key="..\:/Users/Danila/Documents/cybergarden-mop-join/client/app-mobile/app/src/main/res/layout/sign_in_screen.xml" value="0.286231884057971" />
       </map>

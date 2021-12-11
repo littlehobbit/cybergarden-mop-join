@@ -8,7 +8,11 @@
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
     <color name="main_blue">#4A8EE8</color>
+    <color name="main_blue_20">#334A8EE8</color>
     <color name="gray_text">#6C757D</color>
     <color name="black_text">#343A40</color>
     <color name="hamburgerBlack">#000000</color>
+    <color name="main_error">#E84A4A</color>
+    <color name="main_error_20">#33E84A4A</color>
+    <color name="transparent">#00000000</color>
 </resources>

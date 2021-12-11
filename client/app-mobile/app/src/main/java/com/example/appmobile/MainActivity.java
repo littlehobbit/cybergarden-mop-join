@@ -1,5 +1,7 @@
 package com.example.appmobile;
 
+import android.app.PendingIntent;
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.Menu;
 
@@ -54,12 +56,16 @@ public class MainActivity extends AppCompatActivity {
                             if(response.isSuccessful()){
                                 List<NewsListResults> newNews = new ArrayList<>(response.body());
                                 if(newNews.size() > oldNews.size()) {
+                                    Intent intent = new Intent(getApplicationContext(), SignInScreen.class);
+                                    intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
+                                    PendingIntent pendingIntent = PendingIntent.getActivity(getApplicationContext(), 0, intent, 0);
                                     for(int i = newNews.size() - oldNews.size() - 1; i >=0; i--){
                                         NotificationCompat.Builder builder = new NotificationCompat.Builder(getApplicationContext(), "ИКТИБ Абитуриентам")
                                             .setSmallIcon(R.drawable.ic_logo)
                                             .setContentTitle(newNews.get(i).getTitle())
                                             .setPriority(NotificationCompat.PRIORITY_DEFAULT)
-                                            .setAutoCancel(true);
+                                            .setAutoCancel(true)
+                                            .setContentIntent(pendingIntent);
                                         NotificationManagerCompat nm = NotificationManagerCompat.from(getApplicationContext());
                                         nm.notify(id++, builder.build());
                                     }

@@ -7,6 +7,8 @@ import com.example.appmobile.net.entries.LoginResults;
 import com.example.appmobile.net.entries.News;
 import com.example.appmobile.net.entries.NewsListResults;
 import com.example.appmobile.net.entries.Specialization;
+import com.example.appmobile.net.entries.QaListResults;
+import com.example.appmobile.net.entries.Recommendation;
 import com.example.appmobile.net.entries.RegistrationParamsBasic;
 import com.example.appmobile.net.entries.RegistrationParamsNameBirthday;
 import com.example.appmobile.net.entries.RegistrationParamsUserSettings;
@@ -54,4 +56,8 @@ public interface JSONPlaceHolderApi {
     
     @POST("/events/join")
     public Call<Void> joinEventById(@Header("Authorization") String token, @Body JoinEvent joinEvent);
+
+    @GET("/qna/all")
+    public Call<ArrayList<QaListResults>> getQaListData();
+
 }

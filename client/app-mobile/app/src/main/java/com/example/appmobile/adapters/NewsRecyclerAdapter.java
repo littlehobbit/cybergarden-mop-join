@@ -1,4 +1,4 @@
-package com.example.appmobile;
+package com.example.appmobile.adapters;
 
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -9,6 +9,7 @@ import android.widget.TextView;
 
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.example.appmobile.R;
 import com.example.appmobile.net.NetworkService;
 import com.example.appmobile.net.entries.NewsListResults;
 import com.example.appmobile.net.entries.Tag;
@@ -96,7 +97,7 @@ public class NewsRecyclerAdapter extends RecyclerView.Adapter<NewsRecyclerAdapte
     public void onBindViewHolder(ViewHolder viewHolder, final int position) {
         NewsListResults object = data.get(position);
         viewHolder.setNews(object);
-        Picasso.get().load(NetworkService.NEWS_IMAGE_URL
+        Picasso.get().load(NetworkService.getInstance().getNewsImageUrl()
                 + object.getId()).placeholder(R.drawable.placeholder_img).error(R.drawable.e3f0a108aabbd2325203e40177f21312).into(viewHolder.getImage());
     }
 

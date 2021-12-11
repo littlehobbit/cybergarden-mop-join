@@ -11,8 +11,8 @@ public class NetworkService {
     private Retrofit mRetrofit;
     private String fullToken;
 
-    public static final String USER_IMAGE_URL = "http://192.168.61.124:3737/user/getImage?id=";
-    public static final String NEWS_IMAGE_URL = "http://192.168.61.124:3737/news/getImage?id=";
+    public static final String NEWS_IMAGE_URL = BASE_URL + "/news/getImage?id=";
+    public static final String USER_IMAGE_URL = BASE_URL + "/user/getImage?id=";
 
     private NetworkService() {
         mRetrofit = new Retrofit.Builder()
@@ -39,4 +39,10 @@ public class NetworkService {
     public String getToken() {
         return fullToken;
     }
+
+    public String getBaseUrl() { return BASE_URL;}
+
+    public static String getUserImageUrl() { return USER_IMAGE_URL; };
+
+    public static String getNewsImageUrl() { return NEWS_IMAGE_URL; };
 }

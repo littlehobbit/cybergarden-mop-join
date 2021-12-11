@@ -21,6 +21,7 @@
         android:background="@drawable/rounded_img"
         android:contentDescription="@string/nav_header_desc"
         android:paddingTop="@dimen/nav_header_vertical_spacing"
-        app:srcCompat="@drawable/logo_with_text" />
+        android:scaleType="centerCrop"
+        app:srcCompat="@drawable/ictib_logo" />
 
 </LinearLayout>

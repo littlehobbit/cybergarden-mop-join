@@ -9,16 +9,17 @@
     <com.google.android.material.appbar.AppBarLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="@drawable/app_bar_line"
+        android:background="@color/white"
         android:outlineAmbientShadowColor="@color/main_blue"
         android:outlineSpotShadowColor="@color/main_blue"
-        android:theme="@style/Theme.AppMobile.AppBarOverlay">
+        android:theme="@style/Theme.AppMobile.PopupOverlay">
 
         <androidx.appcompat.widget.Toolbar
             android:id="@+id/toolbar"
             android:layout_width="match_parent"
             android:layout_height="?attr/actionBarSize"
-            android:backgroundTint="@color/main_blue"
+            android:backgroundTint="@color/white"
+            android:elevation="0dp"
             android:foregroundTint="@color/main_blue"
             app:popupTheme="@style/Theme.AppMobile.PopupOverlay"
             app:subtitleTextColor="@color/main_blue"
@@ -26,6 +27,8 @@
 
     </com.google.android.material.appbar.AppBarLayout>
 
-    <include layout="@layout/content_main" />
+    <include
+        layout="@layout/content_main"
+        android:elevation="0dp" />
 
 </androidx.coordinatorlayout.widget.CoordinatorLayout>

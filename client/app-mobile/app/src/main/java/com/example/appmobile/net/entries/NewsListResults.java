@@ -8,19 +8,6 @@ public class NewsListResults {
     String title;
     String date;
 
-    class Tag {
-        Integer weight;
-        String tag;
-
-        public Integer getWeight() {
-            return weight;
-        }
-
-        public String getTag() {
-            return tag;
-        }
-    }
-
     ArrayList<Tag> tags;
 
     public Integer getId() {

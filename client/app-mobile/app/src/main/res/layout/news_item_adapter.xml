@@ -48,7 +48,9 @@
                 android:id="@+id/news_card_img"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
+                android:adjustViewBounds="true"
                 android:background="@drawable/rounded_img"
+                android:scaleType="centerCrop"
                 tools:srcCompat="@tools:sample/avatars" />
         </androidx.cardview.widget.CardView>
 

@@ -286,6 +286,17 @@ module.exports.getStudentInterests = async(studentID) => {
     return result;
 }
 
+module.exports.getParagraphs = async (newsID)=>{
+    var request_data = [newsID];
+    var query = "Select number,\
+                    title,\
+                    content\
+                    from Paragraphs\
+                    where news_id=?"
+    var result = await asyncQuery(query, request_data);
+    return result;
+}
+
 module.exports.getAllQuestions = async() => {
     var query = "SELECT question,\
                         shortAnswer,\

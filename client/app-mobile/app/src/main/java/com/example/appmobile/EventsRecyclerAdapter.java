@@ -27,7 +27,6 @@ public class EventsRecyclerAdapter extends RecyclerView.Adapter<EventsRecyclerAd
      */
     public static class ViewHolder extends RecyclerView.ViewHolder {
 
-        boolean isDescriptionShown = false;
         TextView title;
         TextView description;
         TextView date;
@@ -40,14 +39,6 @@ public class EventsRecyclerAdapter extends RecyclerView.Adapter<EventsRecyclerAd
         }
         public TextView getDescription() {
             return description;
-        }
-
-        public boolean getIsDescriptionShown() {
-            return isDescriptionShown;
-        }
-
-        public void swapIsDescriptionShown() {
-            isDescriptionShown = !isDescriptionShown;
         }
 
         public ImageButton getBtnCardGrow() {
@@ -92,11 +83,12 @@ public class EventsRecyclerAdapter extends RecyclerView.Adapter<EventsRecyclerAd
     // Replace the contents of a view (invoked by the layout manager)
     @Override
     public void onBindViewHolder(ViewHolder viewHolder, final int position) {
+        final EventsListResults object = data.get(position);
         viewHolder.getBtnCardGrow().setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                viewHolder.swapIsDescriptionShown();
-                if(viewHolder.getIsDescriptionShown()) {
+                object.swapIsDescriptionShown();
+                if(object.getIsDescriptionShown()) {
                     viewHolder.getDescription().setVisibility(View.VISIBLE);
                     return;
                 }
@@ -104,11 +96,11 @@ public class EventsRecyclerAdapter extends RecyclerView.Adapter<EventsRecyclerAd
             }
         });
 
-        viewHolder.getTitle().setText(data.get(position).getTitle());
-        viewHolder.getDescription().setText(data.get(position).getDescription());
-        viewHolder.getDate().setText(data.get(position).getStartDate());
-        viewHolder.getAddress().setText(data.get(position).getPlace());
-        Picasso.get().load("http://192.168.43.124:3737/events/getImage?id=" + data.get(position).getId()).placeholder(R.drawable.placeholder_img).error(R.drawable.e3f0a108aabbd2325203e40177f21312).into(viewHolder.getImage());
+        viewHolder.getTitle().setText(object.getTitle());
+        viewHolder.getDescription().setText(object.getDescription());
+        viewHolder.getDate().setText(object.getStartDate());
+        viewHolder.getAddress().setText(object.getPlace());
+        Picasso.get().load("http://192.168.43.124:3737/events/getImage?id=" + object.getId()).placeholder(R.drawable.placeholder_img).error(R.drawable.e3f0a108aabbd2325203e40177f21312).into(viewHolder.getImage());
     }
 
     // Return the size of your dataset (invoked by the layout manager)

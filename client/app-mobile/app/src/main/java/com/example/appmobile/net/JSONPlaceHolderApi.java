@@ -10,6 +10,7 @@ import com.example.appmobile.net.entries.Recommendation;
 import com.example.appmobile.net.entries.RegistrationParamsBasic;
 import com.example.appmobile.net.entries.RegistrationParamsNameBirthday;
 import com.example.appmobile.net.entries.RegistrationParamsUserSettings;
+import com.example.appmobile.net.entries.SelectedNewsBody;
 import com.example.appmobile.net.entries.User;
 
 import java.util.ArrayList;
@@ -46,8 +47,8 @@ public interface JSONPlaceHolderApi {
     @GET("/news/all")
     public Call<ArrayList<NewsListResults>> getNewsList();
 
-    @POST("/news/read")
-    public Call<News> getSpecifiedNews(@Header("Authorization") String token, @Field("news_id") Integer id);
+    @POST("/news/read/")
+    public Call<News> getSpecifiedNews(@Header("Authorization") String token, @Body SelectedNewsBody body);
     
     @POST("/events/join")
     public Call<Void> joinEventById(@Header("Authorization") String token, @Body JoinEvent joinEvent);

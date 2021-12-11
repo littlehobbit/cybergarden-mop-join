@@ -10,6 +10,7 @@ import android.widget.Toast;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentTransaction;
 import androidx.lifecycle.ViewModelProvider;
 import androidx.navigation.Navigation;
 import androidx.recyclerview.widget.RecyclerView;
@@ -21,6 +22,7 @@ import com.example.appmobile.net.NetworkService;
 import com.example.appmobile.net.entries.NewsListResults;
 import com.example.appmobile.viewmodels.SelectedNewsModel;
 import com.example.appmobile.viewmodels.UserViewModel;
+import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
 

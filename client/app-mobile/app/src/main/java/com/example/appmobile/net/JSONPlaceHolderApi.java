@@ -8,7 +8,6 @@ import com.example.appmobile.net.entries.News;
 import com.example.appmobile.net.entries.NewsListResults;
 import com.example.appmobile.net.entries.Specialization;
 import com.example.appmobile.net.entries.QaListResults;
-import com.example.appmobile.net.entries.Recommendation;
 import com.example.appmobile.net.entries.RegistrationParamsBasic;
 import com.example.appmobile.net.entries.RegistrationParamsNameBirthday;
 import com.example.appmobile.net.entries.RegistrationParamsUserSettings;

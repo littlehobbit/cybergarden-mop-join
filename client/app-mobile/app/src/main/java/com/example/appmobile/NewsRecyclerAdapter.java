@@ -9,6 +9,7 @@ import android.widget.TextView;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.appmobile.net.entries.NewsListResults;
+import com.example.appmobile.net.entries.Tag;
 import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
@@ -34,6 +35,10 @@ public class NewsRecyclerAdapter extends RecyclerView.Adapter<NewsRecyclerAdapte
             return title;
         }
 
+        public TextView getTags() {
+            return tags;
+        }
+
         public ImageView getImage() {
             return image;
         }
@@ -42,7 +47,7 @@ public class NewsRecyclerAdapter extends RecyclerView.Adapter<NewsRecyclerAdapte
         public ViewHolder(View view) {
             super(view);
             title = view.findViewById(R.id.event_card_title);
-            tags = view.findViewById(R.id.event_card_title);
+            tags = view.findViewById(R.id.news_card_tags);
             image = view.findViewById(R.id.news_card_img);
         }
     }
@@ -61,8 +66,14 @@ public class NewsRecyclerAdapter extends RecyclerView.Adapter<NewsRecyclerAdapte
     // Replace the contents of a view (invoked by the layout manager)
     @Override
     public void onBindViewHolder(ViewHolder viewHolder, final int position) {
-        viewHolder.getTitle().setText(data.get(position).getTitle());
-        Picasso.get().load("http://192.168.43.124:3737/news/getImage?id=" + data.get(position).getId()).placeholder(R.drawable.placeholder_img).error(R.drawable.e3f0a108aabbd2325203e40177f21312).into(viewHolder.getImage());
+        final NewsListResults object = data.get(position);
+        StringBuilder tags = new StringBuilder();
+        for(Tag item : object.getTags()) {
+            tags.append(item.getTag()).append(" ");
+        }
+        viewHolder.getTags().setText(tags.toString());
+        viewHolder.getTitle().setText(object.getTitle());
+        Picasso.get().load("http://192.168.43.124:3737/news/getImage?id=" + object.getId()).placeholder(R.drawable.placeholder_img).error(R.drawable.e3f0a108aabbd2325203e40177f21312).into(viewHolder.getImage());
     }
 
     // Return the size of your dataset (invoked by the layout manager)

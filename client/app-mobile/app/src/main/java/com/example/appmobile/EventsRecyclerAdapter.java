@@ -10,6 +10,7 @@ import android.widget.TextView;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.appmobile.net.entries.EventsListResults;
+import com.example.appmobile.net.entries.Tag;
 import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
@@ -28,6 +29,7 @@ public class EventsRecyclerAdapter extends RecyclerView.Adapter<EventsRecyclerAd
     public static class ViewHolder extends RecyclerView.ViewHolder {
 
         TextView title;
+        TextView tags;
         TextView description;
         TextView date;
         TextView address;
@@ -37,8 +39,13 @@ public class EventsRecyclerAdapter extends RecyclerView.Adapter<EventsRecyclerAd
         public TextView getAddress() {
             return address;
         }
+
         public TextView getDescription() {
             return description;
+        }
+
+        public TextView getTags() {
+            return tags;
         }
 
         public ImageButton getBtnCardGrow() {
@@ -61,6 +68,7 @@ public class EventsRecyclerAdapter extends RecyclerView.Adapter<EventsRecyclerAd
         public ViewHolder(View view) {
             super(view);
             title = view.findViewById(R.id.event_card_title);
+            tags = view.findViewById(R.id.event_card_tags);
             description = view.findViewById(R.id.event_card_description);
             date = view.findViewById(R.id.event_card_date);
             address = view.findViewById(R.id.event_card_address);
@@ -89,15 +97,21 @@ public class EventsRecyclerAdapter extends RecyclerView.Adapter<EventsRecyclerAd
             public void onClick(View view) {
                 object.swapIsDescriptionShown();
                 if(object.getIsDescriptionShown()) {
-                    viewHolder.getDescription().setVisibility(View.VISIBLE);
+                    viewHolder.getDescription().setText(object.getDescription());
                     return;
                 }
-                viewHolder.getDescription().setVisibility(View.GONE);
+                viewHolder.getDescription().setText("");
             }
         });
 
+        StringBuilder tags = new StringBuilder();
+        for(Tag item : object.getTags()) {
+            tags.append(item.getTag()).append(" ");
+        }
+
+        viewHolder.getDescription().setText("");
         viewHolder.getTitle().setText(object.getTitle());
-        viewHolder.getDescription().setText(object.getDescription());
+        viewHolder.getTags().setText(tags.toString());
         viewHolder.getDate().setText(object.getStartDate());
         viewHolder.getAddress().setText(object.getPlace());
         Picasso.get().load("http://192.168.43.124:3737/events/getImage?id=" + object.getId()).placeholder(R.drawable.placeholder_img).error(R.drawable.e3f0a108aabbd2325203e40177f21312).into(viewHolder.getImage());

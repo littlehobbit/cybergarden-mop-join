@@ -1,21 +1,24 @@
-package com.example.appmobile.ui.events;
+package com.example.appmobile.ui.qa;
 
 import android.os.Bundle;
-import android.view.LayoutInflater;
-import android.view.View;
-import android.view.ViewGroup;
-import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.example.appmobile.adapters.EventsRecyclerAdapter;
+import android.view.LayoutInflater;
+import android.view.View;
+import android.view.ViewGroup;
+import android.widget.Toast;
+
 import com.example.appmobile.R;
+import com.example.appmobile.adapters.EventsRecyclerAdapter;
+import com.example.appmobile.adapters.QaRecyclerAdapter;
 import com.example.appmobile.databinding.FragmentEventsBinding;
 import com.example.appmobile.net.NetworkService;
 import com.example.appmobile.net.entries.EventsListResults;
+import com.example.appmobile.net.entries.QaListResults;
 
 import java.util.ArrayList;
 
@@ -23,14 +26,16 @@ import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
-public class EventsFragment extends Fragment {
+
+public class QaFragment extends Fragment {
 
     private FragmentEventsBinding binding;
-    EventsRecyclerAdapter adapter = new EventsRecyclerAdapter(new ArrayList<>());
+    QaRecyclerAdapter adapter = new QaRecyclerAdapter(new ArrayList<>());
     RecyclerView recyclerView;
 
-    public View onCreateView(@NonNull LayoutInflater inflater,
-                             ViewGroup container, Bundle savedInstanceState) {
+    @Override
+    public View onCreateView(LayoutInflater inflater, ViewGroup container,
+                             Bundle savedInstanceState) {
 
         binding = FragmentEventsBinding.inflate(inflater, container, false);
         View root = binding.getRoot();
@@ -41,30 +46,28 @@ public class EventsFragment extends Fragment {
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
         recyclerView = view.findViewById(R.id.events_list);
-        adapter.setHasStableIds(true);
         adapter.clearAll();
-        updateEventsList();
+        updateQAList();
 
     }
 
-    public void updateEventsList() {
+    public void updateQAList() {
         NetworkService.getInstance()
                 .getJSONApi()
-                .getEventsList(NetworkService.getInstance().getToken())
-                .enqueue(new Callback<ArrayList<EventsListResults>>() {
+                .getQaListData()
+                .enqueue(new Callback<ArrayList<QaListResults>>() {
                     @Override
-                    public void onResponse(@NonNull Call<ArrayList<EventsListResults>> call, @NonNull Response<ArrayList<EventsListResults>> response) {
+                    public void onResponse(Call<ArrayList<QaListResults>> call, Response<ArrayList<QaListResults>> response) {
                         if(response.isSuccessful()) {
-                            Toast.makeText(getContext(), "Get events list, yeeeee", Toast.LENGTH_SHORT).show();
+                            Toast.makeText(getContext(), "Get qa list, yeeeee", Toast.LENGTH_SHORT).show();
                             adapter.addAll(response.body());
                             recyclerView.setAdapter(adapter);
                         }
                     }
 
                     @Override
-                    public void onFailure(@NonNull Call<ArrayList<EventsListResults>> call, @NonNull Throwable t) {
-
-                        Toast.makeText(getContext(), "Error while you get events list", Toast.LENGTH_SHORT).show();
+                    public void onFailure(Call<ArrayList<QaListResults>> call, Throwable t) {
+                        Toast.makeText(getContext(), "Error while you get qa list", Toast.LENGTH_SHORT).show();
                         t.printStackTrace();
                     }
                 });

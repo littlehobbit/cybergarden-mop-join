@@ -39,13 +39,11 @@ public class EventsRecyclerAdapter extends RecyclerView.Adapter<EventsRecyclerAd
     public static class ViewHolder extends RecyclerView.ViewHolder {
 
         TextView title;
-        TextView tags;
         Button btnJoinEvent;
         TextView description;
         TextView date;
         TextView address;
         ImageView image;
-        ImageButton btnCardGrow;
 
         public TextView getAddress() {
             return address;
@@ -53,14 +51,6 @@ public class EventsRecyclerAdapter extends RecyclerView.Adapter<EventsRecyclerAd
 
         public TextView getDescription() {
             return description;
-        }
-
-        public TextView getTags() {
-            return tags;
-        }
-
-        public ImageButton getBtnCardGrow() {
-            return btnCardGrow;
         }
 
         public Button getBtnJoinEvent() {
@@ -83,12 +73,10 @@ public class EventsRecyclerAdapter extends RecyclerView.Adapter<EventsRecyclerAd
         public ViewHolder(View view) {
             super(view);
             title = view.findViewById(R.id.event_card_title);
-            tags = view.findViewById(R.id.event_card_tags);
             description = view.findViewById(R.id.event_card_description);
             date = view.findViewById(R.id.event_card_date);
             address = view.findViewById(R.id.event_card_address);
-            image = view.findViewById(R.id.news_card_img);
-            btnCardGrow = view.findViewById(R.id.btn_event_card_grow);
+            image = view.findViewById(R.id.event_card_img);
             btnJoinEvent = view.findViewById(R.id.btn_join_event);
         }
     }
@@ -109,17 +97,6 @@ public class EventsRecyclerAdapter extends RecyclerView.Adapter<EventsRecyclerAd
     public void onBindViewHolder(ViewHolder viewHolder, final int position) {
         Integer currentPos = position;
         final EventsListResults object = data.get(position);
-        viewHolder.getBtnCardGrow().setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                object.swapIsDescriptionShown();
-                if(object.getIsDescriptionShown()) {
-                    viewHolder.getDescription().setText(object.getDescription());
-                    return;
-                }
-                viewHolder.getDescription().setText("");
-            }
-        });
 
         viewHolder.getBtnJoinEvent().setOnClickListener(new View.OnClickListener() {
             @Override
@@ -155,12 +132,11 @@ public class EventsRecyclerAdapter extends RecyclerView.Adapter<EventsRecyclerAd
 
         if(object.getVisited() == 1) viewHolder.getBtnJoinEvent().setEnabled(false);
         if(object.getVisited() == 0) viewHolder.getBtnJoinEvent().setEnabled(true);
-        viewHolder.getDescription().setText("");
+        viewHolder.getDescription().setText(object.getDescription());
         viewHolder.getTitle().setText(object.getTitle());
-        viewHolder.getTags().setText(tags.toString());
-        viewHolder.getDate().setText(object.getStartDate());
+        viewHolder.getDate().setText(NetworkService.fixDate(object.getStartDate()));
         viewHolder.getAddress().setText(object.getPlace());
-        Picasso.get().load(NetworkService.getInstance().getBaseUrl() + "/events/getImage?id=" + object.getId()).placeholder(R.drawable.placeholder_img).error(R.drawable.e3f0a108aabbd2325203e40177f21312).into(viewHolder.getImage());
+        Picasso.get().load(NetworkService.getInstance().getBaseUrl() + "/events/getImage?id=" + object.getId()).placeholder(R.color.white).error(R.drawable.e3f0a108aabbd2325203e40177f21312).into(viewHolder.getImage());
     }
 
     // Return the size of your dataset (invoked by the layout manager)
@@ -179,5 +155,15 @@ public class EventsRecyclerAdapter extends RecyclerView.Adapter<EventsRecyclerAd
         if(data == null) return;
         data.addAll(newData);
         notifyDataSetChanged();
+    }
+
+    @Override
+    public long getItemId(int position) {
+        return position;
+    }
+
+    @Override
+    public int getItemViewType(int position) {
+        return position;
     }
 }

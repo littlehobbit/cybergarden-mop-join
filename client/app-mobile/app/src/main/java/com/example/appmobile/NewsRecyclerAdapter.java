@@ -1,5 +1,6 @@
 package com.example.appmobile;
 
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -8,6 +9,7 @@ import android.widget.TextView;
 
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.example.appmobile.net.NetworkService;
 import com.example.appmobile.net.entries.NewsListResults;
 import com.example.appmobile.net.entries.Tag;
 import com.squareup.picasso.Picasso;
@@ -16,9 +18,15 @@ import java.util.ArrayList;
 
 public class NewsRecyclerAdapter extends RecyclerView.Adapter<NewsRecyclerAdapter.ViewHolder> {
 
-    private ArrayList<NewsListResults> data = new ArrayList<>();
+    public static interface OnClick {
+        void onClicked(NewsListResults news);
+    }
 
-    public NewsRecyclerAdapter(ArrayList<NewsListResults> data) {
+    private ArrayList<NewsListResults> data = new ArrayList<>();
+    private OnClick onClickListener;
+
+    public NewsRecyclerAdapter(ArrayList<NewsListResults> data, OnClick onClickListener) {
+        this.onClickListener = onClickListener;
         this.data = data;
     }
     /**
@@ -30,6 +38,7 @@ public class NewsRecyclerAdapter extends RecyclerView.Adapter<NewsRecyclerAdapte
         TextView title;
         TextView tags;
         ImageView image;
+        NewsListResults news;
 
         public TextView getTitle() {
             return title;
@@ -50,6 +59,20 @@ public class NewsRecyclerAdapter extends RecyclerView.Adapter<NewsRecyclerAdapte
             tags = view.findViewById(R.id.news_card_tags);
             image = view.findViewById(R.id.news_card_img);
         }
+
+        public NewsListResults getNews() {
+            return news;
+        }
+
+        public void setNews(NewsListResults newsRes) {
+            this.news = newsRes;
+            StringBuilder tags = new StringBuilder();
+            for(Tag item : newsRes.getTags()) {
+                tags.append(item.getTag()).append(" ");
+            }
+            this.tags.setText(tags.toString());
+            this.title.setText(newsRes.getTitle());
+        }
     }
 
 
@@ -60,20 +83,21 @@ public class NewsRecyclerAdapter extends RecyclerView.Adapter<NewsRecyclerAdapte
         View view = LayoutInflater.from(viewGroup.getContext())
                 .inflate(R.layout.news_item_adapter, viewGroup, false);
 
-        return new ViewHolder(view);
+        ViewHolder holder = new ViewHolder(view);
+        view.setOnClickListener(v -> {
+            onClickListener.onClicked(holder.news);
+        });
+
+        return holder;
     }
 
     // Replace the contents of a view (invoked by the layout manager)
     @Override
     public void onBindViewHolder(ViewHolder viewHolder, final int position) {
-        final NewsListResults object = data.get(position);
-        StringBuilder tags = new StringBuilder();
-        for(Tag item : object.getTags()) {
-            tags.append(item.getTag()).append(" ");
-        }
-        viewHolder.getTags().setText(tags.toString());
-        viewHolder.getTitle().setText(object.getTitle());
-        Picasso.get().load("http://192.168.43.124:3737/news/getImage?id=" + object.getId()).placeholder(R.drawable.placeholder_img).error(R.drawable.e3f0a108aabbd2325203e40177f21312).into(viewHolder.getImage());
+        NewsListResults object = data.get(position);
+        viewHolder.setNews(object);
+        Picasso.get().load(NetworkService.NEWS_IMAGE_URL
+                + object.getId()).placeholder(R.drawable.placeholder_img).error(R.drawable.e3f0a108aabbd2325203e40177f21312).into(viewHolder.getImage());
     }
 
     // Return the size of your dataset (invoked by the layout manager)

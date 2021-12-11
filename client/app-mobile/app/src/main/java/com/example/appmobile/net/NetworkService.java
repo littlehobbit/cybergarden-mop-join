@@ -7,11 +7,12 @@ import retrofit2.converter.gson.GsonConverterFactory;
 
 public class NetworkService {
     private static NetworkService mInstance;
-    private static final String BASE_URL = "http://192.168.43.124:3737";
+    private static final String BASE_URL = "http://192.168.61.124:3737";
     private Retrofit mRetrofit;
     private String fullToken;
 
-    public static final String USER_IMAGE_URL = "http://192.168.43.124:3737/user/getImage?id=";
+    public static final String USER_IMAGE_URL = "http://192.168.61.124:3737/user/getImage?id=";
+    public static final String NEWS_IMAGE_URL = "http://192.168.61.124:3737/news/getImage?id=";
 
     private NetworkService() {
         mRetrofit = new Retrofit.Builder()

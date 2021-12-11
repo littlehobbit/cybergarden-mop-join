@@ -3,6 +3,7 @@ package com.example.appmobile.net;
 import com.example.appmobile.net.entries.EventsListResults;
 import com.example.appmobile.net.entries.LoginParams;
 import com.example.appmobile.net.entries.LoginResults;
+import com.example.appmobile.net.entries.News;
 import com.example.appmobile.net.entries.NewsListResults;
 import com.example.appmobile.net.entries.RegistrationParams;
 import com.example.appmobile.net.entries.User;
@@ -11,6 +12,7 @@ import java.util.ArrayList;
 
 import retrofit2.Call;
 import retrofit2.http.Body;
+import retrofit2.http.Field;
 import retrofit2.http.GET;
 import retrofit2.http.Header;
 import retrofit2.http.POST;
@@ -30,4 +32,7 @@ public interface JSONPlaceHolderApi {
 
     @GET("/news/all")
     public Call<ArrayList<NewsListResults>> getNewsList();
+
+    @POST("/news/read")
+    public Call<News> getSpecifiedNews(@Header("Authorization") String token, @Field("news_id") Integer id);
 }

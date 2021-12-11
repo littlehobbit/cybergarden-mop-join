@@ -20,8 +20,8 @@ POST http://192.168.43.124:3737/auth/login
 Content-Type: application/json
 
 {
-    "identifier":"dlaptev@sfedu.ru",
-    "password":"1"
+    "identifier":"nkutovoy@sfedu.ru",
+    "password":"hello"
 }
 
 ### Logout
@@ -108,12 +108,12 @@ GET http://192.168.43.124:3737/news/all
 
 ###
 
-GET http://192.168.43.124:3737/events/getImage?id=1
+GET http://192.168.43.124:3737/user/getImage?id=1
 
 ###
 
 POST http://192.168.43.124:3737/news/read
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6Miwic3R1ZGVudCI6NCwiaWF0IjoxNjM5MTgzNjU0fQ.BEAk0aeQEqmTdOzGcgynrydImm4l-jMaI2f03h_F9zI
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwic3R1ZGVudCI6MywiaWF0IjoxNjM5MjA1MTQ1fQ.rOeBJ_MFA1XqXkSdAVd_H4yFHVJbO1v1WsNkTV-aAdw
 Content-Type: application/json
 
 {
@@ -127,4 +127,8 @@ Get http://192.168.43.124:3737/specialization/all
 ###
 
 Get http://192.168.43.124:3737/specialization/recommendation
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6Miwic3R1ZGVudCI6NCwiaWF0IjoxNjM5MTk4NTY0fQ.ZX6pUBnw8TaLbLveF8jxfOLeYCwPSuNAVKBuwgI7MsE
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwic3R1ZGVudCI6MywiaWF0IjoxNjM5MjA1MTQ1fQ.rOeBJ_MFA1XqXkSdAVd_H4yFHVJbO1v1WsNkTV-aAdw
+
+###
+
+Get http://192.168.43.124:3737/qna/all

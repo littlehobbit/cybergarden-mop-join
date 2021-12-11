@@ -285,3 +285,12 @@ module.exports.getStudentInterests = async(studentID) => {
     var result = await asyncQuery(query, request_data);
     return result;
 }
+
+module.exports.getAllQuestions = async() => {
+    var query = "SELECT question,\
+                        shortAnswer,\
+                        fullAnswer\
+                    FROM hackathon_garden_winter.QnA;"
+    var result = await asyncQuery(query, []);
+    return result;
+}

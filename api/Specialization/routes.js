@@ -15,6 +15,7 @@ router.use("/recommendation", middlewares.authenticateUser);
 router.get("/recommendation", async(req, res)=>{
     var Specialization = await db.getAllSpecifications();
     var UserInterests = await db.getStudentInterests(req.user.student);
+    if(UserInterests.length == 0) return res.status(200).send([]);
     var userI = {};
     UserInterests.forEach(element=>{
         userI[element.id] = element.weight;
@@ -30,9 +31,11 @@ router.get("/recommendation", async(req, res)=>{
             max = Specialization[i].weight;
         }
     }
-    console.log(max);
     for (let i = 0; i < Specialization.length; i++) {
-        Specialization[i].weight = Math.trunc(Specialization[i].weight * 100 / max);
+        if(Specialization[i].weight == 0) delete Specialization[i];
+        else {
+            Specialization[i].weight = Math.trunc(Specialization[i].weight * 100 / max);
+        }
     }
     res.status(200).send(Specialization);
 })

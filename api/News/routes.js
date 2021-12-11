@@ -76,7 +76,7 @@ router.post("/read", async (req, res) =>{
     try{
         var news = await db.getNewsData(newsID);
         delete news["picture"]
-        news.parapgraphs = await db.getParagraphs(newsID);
+        news.paragraphs = await db.getParagraphs(newsID);
         res.status(200).send(news);
         db.readNews(newsID, req.user.student)
     }

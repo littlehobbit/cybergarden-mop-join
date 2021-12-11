@@ -11,6 +11,7 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProvider;
+import androidx.navigation.Navigation;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.appmobile.NewsRecyclerAdapter;
@@ -20,6 +21,7 @@ import com.example.appmobile.databinding.FragmentNewsBinding;
 import com.example.appmobile.net.NetworkService;
 import com.example.appmobile.net.entries.EventsListResults;
 import com.example.appmobile.net.entries.NewsListResults;
+import com.example.appmobile.viewmodels.SelectedNewsModel;
 import com.example.appmobile.viewmodels.UserViewModel;
 
 import java.util.ArrayList;
@@ -31,7 +33,7 @@ import retrofit2.Response;
 public class NewsFragment extends Fragment {
 
     private FragmentNewsBinding binding;
-    NewsRecyclerAdapter adapter = new NewsRecyclerAdapter(new ArrayList<>());
+    NewsRecyclerAdapter adapter;
     RecyclerView recyclerView;
 
     public View onCreateView(@NonNull LayoutInflater inflater,
@@ -53,6 +55,13 @@ public class NewsFragment extends Fragment {
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
         recyclerView = view.findViewById(R.id.news_list);
+
+        SelectedNewsModel model = new ViewModelProvider(requireActivity()).get(SelectedNewsModel.class);
+        adapter = new NewsRecyclerAdapter(new ArrayList<>(), news -> {
+            model.selected.postValue(news);
+            Navigation.findNavController(binding.getRoot()).navigate(R.id.to_selectedNews);
+        });
+
         adapter.clearAll();
 
         NetworkService.getInstance()

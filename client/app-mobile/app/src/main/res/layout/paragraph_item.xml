@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    android:layout_marginVertical="15dp">
+
+    <TextView
+        android:id="@+id/paragraph_name"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="@color/main_blue"
+        android:paddingHorizontal="8dp"
+        android:text="Что это такое?"
+        android:textColor="@color/white"
+        android:textSize="24sp" />
+    
+    <TextView
+        android:id="@+id/paragraph_text"
+        android:layout_marginTop="20dp"
+        android:textColor="@color/black"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum quis vel nunc diam aliquam dolor aliquam, tellus at. Est eget pulvinar sed ullamcorper tortor sit vitae. Convallis ultricies porttitor scelerisque convallis. Non velit duis in aliquam tincidunt. Condimentum diam lacus, fusce in faucibus rhoncus sed pharetra, urna."/>
+
+
+
+</LinearLayout>

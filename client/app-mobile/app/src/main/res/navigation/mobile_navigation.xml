@@ -3,13 +3,17 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/mobile_navigation"
-    app:startDestination="@+id/nav_main">
+    app:startDestination="@+id/nav_news">
 
     <fragment
-        android:id="@+id/nav_main"
+        android:id="@+id/nav_news"
         android:name="com.example.appmobile.ui.news.NewsFragment"
         android:label="@string/menu_home"
-        tools:layout="@layout/fragment_news" />
+        tools:layout="@layout/fragment_news" >
+        <action
+            android:id="@+id/to_selectedNews"
+            app:destination="@id/selectednewsFragment" />
+    </fragment>
 
     <fragment
         android:id="@+id/nav_gallery"
@@ -22,4 +26,10 @@
         android:name="com.example.appmobile.ui.profile.ProfileFragment"
         android:label="@string/menu_slideshow"
         tools:layout="@layout/fragment_profile" />
+
+    <fragment
+        android:id="@+id/selectednewsFragment"
+        android:name="com.example.appmobile.ui.news.SelectednewsFragment"
+        android:label="Новости"
+        tools:layout="@layout/fragment_selectednews" />
 </navigation>

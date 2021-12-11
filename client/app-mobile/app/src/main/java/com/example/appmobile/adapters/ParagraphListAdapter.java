@@ -32,7 +32,7 @@ public class ParagraphListAdapter extends RecyclerView.Adapter<ParagraphListAdap
 
         public void setContent(Paragraph paragraph) {
             name.setText(paragraph.title);
-            text.setText(paragraph.text);
+            text.setText(paragraph.content);
         }
     }
 

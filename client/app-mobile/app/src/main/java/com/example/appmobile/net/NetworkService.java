@@ -2,12 +2,15 @@ package com.example.appmobile.net;
 
 import com.example.appmobile.net.entries.LoginResults;
 
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
+
 import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
 
 public class NetworkService {
     private static NetworkService mInstance;
-    private static final String BASE_URL = "http://192.168.61.124:3737";
+    private static final String BASE_URL = "http://192.168.43.124:3737";
     private Retrofit mRetrofit;
     private String fullToken;
 
@@ -38,6 +41,11 @@ public class NetworkService {
 
     public String getToken() {
         return fullToken;
+    }
+
+    public static String fixDate(String date) {
+        LocalDateTime dateTime = LocalDateTime.parse(date.substring(0, date.length() - 2));
+        return dateTime.format(DateTimeFormatter.ofPattern("dd.MM.yyyy"));
     }
 
     public String getBaseUrl() { return BASE_URL;}

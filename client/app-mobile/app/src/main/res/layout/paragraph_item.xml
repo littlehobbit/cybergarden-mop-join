@@ -11,17 +11,18 @@
         android:layout_height="wrap_content"
         android:background="@color/main_blue"
         android:paddingHorizontal="8dp"
-        android:text="Что это такое?"
+        android:text=""
         android:textColor="@color/white"
         android:textSize="24sp" />
-    
+
     <TextView
         android:id="@+id/paragraph_text"
-        android:layout_marginTop="20dp"
-        android:textColor="@color/black"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum quis vel nunc diam aliquam dolor aliquam, tellus at. Est eget pulvinar sed ullamcorper tortor sit vitae. Convallis ultricies porttitor scelerisque convallis. Non velit duis in aliquam tincidunt. Condimentum diam lacus, fusce in faucibus rhoncus sed pharetra, urna."/>
+        android:layout_marginTop="20dp"
+        android:text=""
+        android:textColor="@color/black"
+        android:textSize="16sp" />
 
 
 

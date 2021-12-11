@@ -77,7 +77,8 @@ router.post("/join", async (req, res) =>{
         await db.joinEvent(eventID, req.user.student)
         res.sendStatus(200);
     }
-    catch{
+    catch (e){
+        console.log(e);
         res.sendStatus(400);
     }
 })

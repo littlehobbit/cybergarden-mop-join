@@ -30,7 +30,21 @@ const fileFilter = (req, file, cb) => {
 router.use("/user", middlewares.authenticateUser);
 router.get("/user", async (req, res)=>{
     req.student = await db.getStudent(req.user.student);
+    delete req.student.image;
     res.status(200).send(req.student);
+})
+
+router.use("/edit", middlewares.authenticateUser);
+router.post("/edit", async(req, res) => {
+    req.student = await db.getStudent(req.user.student);
+    console.log(req.student);
+    req.student.first_name = req.body.first_name ? req.body.first_name : req.student.first_name;
+    req.student.second_name = req.body.second_name ? req.body.second_name : req.student.second_name;
+    req.student.middle_name = req.body.middle_name ? req.body.middle_name : req.student.middle_name;
+    req.student.birthdate = req.body.birthdate ? req.body.birthdate : req.student.birthdate;    
+    await db.editStudentInfo(req.student);
+    console.log(req.student);
+    res.send(200);
 })
 
 router.use("/setImage", middlewares.authenticateUser);

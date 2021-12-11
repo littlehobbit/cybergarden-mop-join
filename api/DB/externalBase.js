@@ -100,6 +100,7 @@ module.exports.deleteUser = async (userID) => {
 module.exports.getStudent = async (studentID) => {
     var request_data = [studentID]
     var query = "Select\
+                A.image,\
                 A.first_name,\
                 A.second_name,\
                 A.middle_name,\

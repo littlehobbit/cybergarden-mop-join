@@ -8,26 +8,31 @@
         <entry key="..\:/Hackaton/client/app-mobile/app/src/main/res/layout/content_main.xml" value="0.25" />
         <entry key="..\:/Hackaton/client/app-mobile/app/src/main/res/layout/fragment_gallery.xml" value="0.20520833333333333" />
         <entry key="..\:/Hackaton/client/app-mobile/app/src/main/res/layout/fragment_home.xml" value="0.16" />
+        <entry key="..\:/Users/Danila/Documents/cybergarden-mop-join/client/app-mobile/app/src/main/res/drawable/app_bar_line.xml" value="0.22135416666666666" />
         <entry key="..\:/Users/Danila/Documents/cybergarden-mop-join/client/app-mobile/app/src/main/res/drawable/ic_launcher_background.xml" value="0.3828125" />
         <entry key="..\:/Users/Danila/Documents/cybergarden-mop-join/client/app-mobile/app/src/main/res/drawable/ic_menu_slideshow.xml" value="0.3828125" />
         <entry key="..\:/Users/Danila/Documents/cybergarden-mop-join/client/app-mobile/app/src/main/res/drawable/rounded_img.xml" value="0.3828125" />
         <entry key="..\:/Users/Danila/Documents/cybergarden-mop-join/client/app-mobile/app/src/main/res/drawable/side_nav_bar.xml" value="0.3828125" />
         <entry key="..\:/Users/Danila/Documents/cybergarden-mop-join/client/app-mobile/app/src/main/res/layout/activity_main.xml" value="0.36666666666666664" />
-        <entry key="..\:/Users/Danila/Documents/cybergarden-mop-join/client/app-mobile/app/src/main/res/layout/app_bar_main.xml" value="0.36666666666666664" />
+        <entry key="..\:/Users/Danila/Documents/cybergarden-mop-join/client/app-mobile/app/src/main/res/layout/app_bar_main.xml" value="0.44469525959367945" />
         <entry key="..\:/Users/Danila/Documents/cybergarden-mop-join/client/app-mobile/app/src/main/res/layout/content_main.xml" value="0.36666666666666664" />
         <entry key="..\:/Users/Danila/Documents/cybergarden-mop-join/client/app-mobile/app/src/main/res/layout/events_item_adapter.xml" value="0.5" />
         <entry key="..\:/Users/Danila/Documents/cybergarden-mop-join/client/app-mobile/app/src/main/res/layout/fragment_events.xml" value="0.36666666666666664" />
         <entry key="..\:/Users/Danila/Documents/cybergarden-mop-join/client/app-mobile/app/src/main/res/layout/fragment_faculties.xml" value="0.36666666666666664" />
         <entry key="..\:/Users/Danila/Documents/cybergarden-mop-join/client/app-mobile/app/src/main/res/layout/fragment_news.xml" value="0.286231884057971" />
+        <entry key="..\:/Users/Danila/Documents/cybergarden-mop-join/client/app-mobile/app/src/main/res/layout/fragment_profile.xml" value="0.29797979797979796" />
         <entry key="..\:/Users/Danila/Documents/cybergarden-mop-join/client/app-mobile/app/src/main/res/layout/item_adapter.xml" value="0.33" />
         <entry key="..\:/Users/Danila/Documents/cybergarden-mop-join/client/app-mobile/app/src/main/res/layout/nav_header_main.xml" value="0.5" />
         <entry key="..\:/Users/Danila/Documents/cybergarden-mop-join/client/app-mobile/app/src/main/res/layout/news_item_adapter.xml" value="0.37621023513139695" />
+        <entry key="..\:/Users/Danila/Documents/cybergarden-mop-join/client/app-mobile/app/src/main/res/layout/recomendation_item.xml" value="0.24456521739130435" />
         <entry key="..\:/Users/Danila/Documents/cybergarden-mop-join/client/app-mobile/app/src/main/res/layout/rounded_img.xml" value="0.36666666666666664" />
         <entry key="..\:/Users/Danila/Documents/cybergarden-mop-join/client/app-mobile/app/src/main/res/layout/sign_in_screen.xml" value="0.286231884057971" />
+        <entry key="..\:/Users/Danila/Documents/cybergarden-mop-join/client/app-mobile/app/src/main/res/menu/activity_main_drawer.xml" value="0.67" />
+        <entry key="..\:/Users/Danila/Documents/cybergarden-mop-join/client/app-mobile/app/src/main/res/menu/main.xml" value="0.36666666666666664" />
       </map>
     </option>
   </component>
-  <component name="ProjectRootManager" version="2" languageLevel="JDK_11" project-jdk-name="1.8" project-jdk-type="JavaSDK">
+  <component name="ProjectRootManager" version="2" languageLevel="JDK_11" default="true" project-jdk-name="1.8" project-jdk-type="JavaSDK">
     <output url="file://$PROJECT_DIR$/build/classes" />
   </component>
   <component name="ProjectType">

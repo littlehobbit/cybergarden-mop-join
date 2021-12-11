@@ -20,7 +20,7 @@ public class RecommendationListAdapter extends RecyclerView.Adapter<Recommendati
 
     public static class ItemHolder extends  RecyclerView.ViewHolder {
 
-        TextView specName;
+        TextView title;
         TextView specNum;
         LinearProgressIndicator progressIndicator;
         TextView percent;
@@ -29,21 +29,21 @@ public class RecommendationListAdapter extends RecyclerView.Adapter<Recommendati
             super(itemView);
 
             specNum = itemView.findViewById(R.id.spec_number);
-            specName = itemView.findViewById(R.id.spec_name);
+            title = itemView.findViewById(R.id.spec_name);
             progressIndicator = itemView.findViewById(R.id.recomendation_percent_bar);
             percent = itemView.findViewById(R.id.recomendation_percent);
         }
 
         public void setData(Recommendation recommendation) {
-            specNum.setText(recommendation.specializationNumber);
-            specName.setText(recommendation.specializationName);
-            progressIndicator.setProgress(recommendation.percent);
-            percent.setText(recommendation.percent.toString() + "%");
+            specNum.setText(recommendation.getCodificator());
+            title.setText(recommendation.getTitle());
+            progressIndicator.setProgress(recommendation.getWeight());
+            percent.setText(recommendation.getWeight().toString() + "%");
         }
 
     }
 
-    public void serList(ArrayList<Recommendation> list) {
+    public void setList(ArrayList<Recommendation> list) {
         recommendationList = list;
         notifyDataSetChanged();
     }

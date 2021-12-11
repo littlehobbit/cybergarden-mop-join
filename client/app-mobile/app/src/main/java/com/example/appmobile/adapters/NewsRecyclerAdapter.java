@@ -1,4 +1,4 @@
-package com.example.appmobile;
+package com.example.appmobile.adapters;
 
 import android.view.LayoutInflater;
 import android.view.View;
@@ -8,6 +8,8 @@ import android.widget.TextView;
 
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.example.appmobile.R;
+import com.example.appmobile.net.NetworkService;
 import com.example.appmobile.net.entries.NewsListResults;
 import com.example.appmobile.net.entries.Tag;
 import com.squareup.picasso.Picasso;
@@ -73,7 +75,7 @@ public class NewsRecyclerAdapter extends RecyclerView.Adapter<NewsRecyclerAdapte
         }
         viewHolder.getTags().setText(tags.toString());
         viewHolder.getTitle().setText(object.getTitle());
-        Picasso.get().load("http://192.168.43.124:3737/news/getImage?id=" + object.getId()).placeholder(R.drawable.placeholder_img).error(R.drawable.e3f0a108aabbd2325203e40177f21312).into(viewHolder.getImage());
+        Picasso.get().load(NetworkService.getInstance().getBaseUrl() + "/news/getImage?id=" + object.getId()).placeholder(R.drawable.placeholder_img).error(R.drawable.e3f0a108aabbd2325203e40177f21312).into(viewHolder.getImage());
     }
 
     // Return the size of your dataset (invoked by the layout manager)

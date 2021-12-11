@@ -1,19 +1,29 @@
-package com.example.appmobile;
+package com.example.appmobile.adapters;
 
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
+import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.example.appmobile.R;
+import com.example.appmobile.net.NetworkService;
 import com.example.appmobile.net.entries.EventsListResults;
+import com.example.appmobile.net.entries.JoinEvent;
 import com.example.appmobile.net.entries.Tag;
 import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
+
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
 
 public class EventsRecyclerAdapter extends RecyclerView.Adapter<EventsRecyclerAdapter.ViewHolder> {
 
@@ -30,6 +40,7 @@ public class EventsRecyclerAdapter extends RecyclerView.Adapter<EventsRecyclerAd
 
         TextView title;
         TextView tags;
+        Button btnJoinEvent;
         TextView description;
         TextView date;
         TextView address;
@@ -50,6 +61,10 @@ public class EventsRecyclerAdapter extends RecyclerView.Adapter<EventsRecyclerAd
 
         public ImageButton getBtnCardGrow() {
             return btnCardGrow;
+        }
+
+        public Button getBtnJoinEvent() {
+            return btnJoinEvent;
         }
 
         public TextView getTitle() {
@@ -74,6 +89,7 @@ public class EventsRecyclerAdapter extends RecyclerView.Adapter<EventsRecyclerAd
             address = view.findViewById(R.id.event_card_address);
             image = view.findViewById(R.id.news_card_img);
             btnCardGrow = view.findViewById(R.id.btn_event_card_grow);
+            btnJoinEvent = view.findViewById(R.id.btn_join_event);
         }
     }
 
@@ -91,6 +107,7 @@ public class EventsRecyclerAdapter extends RecyclerView.Adapter<EventsRecyclerAd
     // Replace the contents of a view (invoked by the layout manager)
     @Override
     public void onBindViewHolder(ViewHolder viewHolder, final int position) {
+        Integer currentPos = position;
         final EventsListResults object = data.get(position);
         viewHolder.getBtnCardGrow().setOnClickListener(new View.OnClickListener() {
             @Override
@@ -104,17 +121,46 @@ public class EventsRecyclerAdapter extends RecyclerView.Adapter<EventsRecyclerAd
             }
         });
 
+        viewHolder.getBtnJoinEvent().setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                NetworkService.getInstance()
+                        .getJSONApi()
+                        .joinEventById(NetworkService.getInstance().getToken(), new JoinEvent(object.getId()))
+                        .enqueue(new Callback<Void>() {
+                            @Override
+                            public void onResponse(@NonNull Call<Void> call, @NonNull Response<Void> response) {
+                                if(response.isSuccessful()) {
+                                    Toast.makeText(view.getContext(), "you are added to event", Toast.LENGTH_SHORT).show();
+                                    data.get(currentPos).setVisited(1);
+                                    viewHolder.getBtnJoinEvent().setEnabled(false);
+                                    notifyItemChanged(currentPos);
+                                }
+                            }
+
+                            @Override
+                            public void onFailure(@NonNull Call<Void> call, @NonNull Throwable t) {
+
+                                Toast.makeText(view.getContext(), "Error while you join event", Toast.LENGTH_SHORT).show();
+                                t.printStackTrace();
+                            }
+                        });
+            }
+        });
+
         StringBuilder tags = new StringBuilder();
         for(Tag item : object.getTags()) {
             tags.append(item.getTag()).append(" ");
         }
 
+        if(object.getVisited() == 1) viewHolder.getBtnJoinEvent().setEnabled(false);
+        if(object.getVisited() == 0) viewHolder.getBtnJoinEvent().setEnabled(true);
         viewHolder.getDescription().setText("");
         viewHolder.getTitle().setText(object.getTitle());
         viewHolder.getTags().setText(tags.toString());
         viewHolder.getDate().setText(object.getStartDate());
         viewHolder.getAddress().setText(object.getPlace());
-        Picasso.get().load("http://192.168.43.124:3737/events/getImage?id=" + object.getId()).placeholder(R.drawable.placeholder_img).error(R.drawable.e3f0a108aabbd2325203e40177f21312).into(viewHolder.getImage());
+        Picasso.get().load(NetworkService.getInstance().getBaseUrl() + "/events/getImage?id=" + object.getId()).placeholder(R.drawable.placeholder_img).error(R.drawable.e3f0a108aabbd2325203e40177f21312).into(viewHolder.getImage());
     }
 
     // Return the size of your dataset (invoked by the layout manager)

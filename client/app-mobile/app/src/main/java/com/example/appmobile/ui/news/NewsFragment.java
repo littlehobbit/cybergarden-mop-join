@@ -13,12 +13,10 @@ import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProvider;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.example.appmobile.NewsRecyclerAdapter;
-import com.example.appmobile.NewsCardData;
+import com.example.appmobile.adapters.NewsRecyclerAdapter;
 import com.example.appmobile.R;
 import com.example.appmobile.databinding.FragmentNewsBinding;
 import com.example.appmobile.net.NetworkService;
-import com.example.appmobile.net.entries.EventsListResults;
 import com.example.appmobile.net.entries.NewsListResults;
 import com.example.appmobile.viewmodels.UserViewModel;
 

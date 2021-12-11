@@ -1,33 +1,21 @@
 package com.example.appmobile.ui.events;
 
-import android.content.Intent;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.view.ViewManager;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
-import androidx.lifecycle.ViewModelProvider;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.example.appmobile.EventsCardData;
-import com.example.appmobile.EventsRecyclerAdapter;
-import com.example.appmobile.MainActivity;
-import com.example.appmobile.NewsCardData;
-import com.example.appmobile.NewsRecyclerAdapter;
+import com.example.appmobile.adapters.EventsRecyclerAdapter;
 import com.example.appmobile.R;
-import com.example.appmobile.SignInScreen;
-import com.example.appmobile.SignUpScreen;
 import com.example.appmobile.databinding.FragmentEventsBinding;
 import com.example.appmobile.net.NetworkService;
 import com.example.appmobile.net.entries.EventsListResults;
-import com.example.appmobile.net.entries.RegistrationParams;
-import com.example.appmobile.viewmodels.UserViewModel;
 
 import java.util.ArrayList;
 
@@ -56,7 +44,11 @@ public class EventsFragment extends Fragment {
         super.onViewCreated(view, savedInstanceState);
         recyclerView = view.findViewById(R.id.events_list);
         adapter.clearAll();
+        updateEventsList();
 
+    }
+
+    public void updateEventsList() {
         NetworkService.getInstance()
                 .getJSONApi()
                 .getEventsList(NetworkService.getInstance().getToken())
@@ -77,7 +69,6 @@ public class EventsFragment extends Fragment {
                         t.printStackTrace();
                     }
                 });
-
     }
 
     @Override

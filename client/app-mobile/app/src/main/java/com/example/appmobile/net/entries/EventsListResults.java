@@ -7,6 +7,7 @@ import java.util.ArrayList;
 public class EventsListResults {
 
     Integer id;
+    Integer visited;
     String title;
     String description;
     @SerializedName("start_date")
@@ -31,6 +32,10 @@ public class EventsListResults {
         return id;
     }
 
+    public Integer getVisited() {
+        return visited;
+    }
+
     public String getTitle() {
         return title;
     }
@@ -53,5 +58,9 @@ public class EventsListResults {
 
     public ArrayList<Tag> getTags() {
         return tags;
+    }
+
+    public void setVisited(Integer visited) {
+        this.visited = visited;
     }
 }

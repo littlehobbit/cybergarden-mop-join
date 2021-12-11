@@ -41,6 +41,7 @@ public class EventsFragment extends Fragment {
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
         recyclerView = view.findViewById(R.id.events_list);
+        adapter.setHasStableIds(true);
         adapter.clearAll();
         updateEventsList();
 

@@ -36,6 +36,6 @@
     <fragment
         android:id="@+id/nav_qa"
         android:name="com.example.appmobile.ui.qa.QaFragment"
-        android:label="Вопрос\Ответ"
+        android:label="Вопрос|Ответ"
         tools:layout="@layout/fragment_qa" />
 </navigation>

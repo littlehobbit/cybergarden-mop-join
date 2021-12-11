@@ -10,6 +10,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
+import androidx.cardview.widget.CardView;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.appmobile.R;
@@ -40,9 +41,15 @@ public class QaRecyclerAdapter extends RecyclerView.Adapter<QaRecyclerAdapter.Vi
     public static class ViewHolder extends RecyclerView.ViewHolder {
 
         View view;
+        ImageButton button;
         TextView question;
         TextView full_answer;
         TextView short_answer;
+        CardView cardView;
+
+        public CardView getCardView() {
+            return cardView;
+        }
 
         public TextView getQuestion() {
             return question;
@@ -60,10 +67,13 @@ public class QaRecyclerAdapter extends RecyclerView.Adapter<QaRecyclerAdapter.Vi
             return short_answer;
         }
 
+        public ImageButton getButton(){return button;}
 
         public ViewHolder(View view) {
             super(view);
             this.view = view;
+            button = view.findViewById(R.id.btn_qa_card_grow);
+            cardView = view.findViewById(R.id.qa_card_background);
             question = view.findViewById(R.id.qa_card_question);
             full_answer = view.findViewById(R.id.qa_card_full_answer);
             short_answer = view.findViewById(R.id.qa_card_short_answer);
@@ -83,9 +93,11 @@ public class QaRecyclerAdapter extends RecyclerView.Adapter<QaRecyclerAdapter.Vi
 
     @Override
     public void onBindViewHolder(@NonNull ViewHolder viewHolder, int position) {
-        Integer currentPos = position;
+
+
+
         final QaListResults object = data.get(position);
-        viewHolder.getView().setOnClickListener(view -> {
+        viewHolder.getButton().setOnClickListener(view -> {
             object.swapIsDescriptionShown();
             if(viewHolder.getFull_answer().getVisibility() == View.VISIBLE)
                 viewHolder.getFull_answer().setVisibility(View.GONE);
@@ -93,7 +105,13 @@ public class QaRecyclerAdapter extends RecyclerView.Adapter<QaRecyclerAdapter.Vi
                 viewHolder.getFull_answer().setVisibility(View.VISIBLE);
         });
 
-        StringBuilder tags = new StringBuilder();
+        viewHolder.getCardView().setOnClickListener(view -> {
+            object.swapIsDescriptionShown();
+            if(viewHolder.getFull_answer().getVisibility() == View.VISIBLE)
+                viewHolder.getFull_answer().setVisibility(View.GONE);
+            else
+                viewHolder.getFull_answer().setVisibility(View.VISIBLE);
+        });
 
         viewHolder.getShort_answer().setText(object.getShortAnswer());
         viewHolder.getFull_answer().setText(object.getFullAnswer());

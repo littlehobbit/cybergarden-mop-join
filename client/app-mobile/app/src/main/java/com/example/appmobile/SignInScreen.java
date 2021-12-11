@@ -30,6 +30,7 @@ public class SignInScreen extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.sign_in_screen);
+        getSupportActionBar().setTitle("Вход в приложение");
 
         login = findViewById(R.id.login_sign_in);
         password = findViewById(R.id.password_sign_in);

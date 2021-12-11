@@ -7,7 +7,9 @@ import com.example.appmobile.net.entries.LoginResults;
 import com.example.appmobile.net.entries.News;
 import com.example.appmobile.net.entries.NewsListResults;
 import com.example.appmobile.net.entries.Recommendation;
-import com.example.appmobile.net.entries.RegistrationParams;
+import com.example.appmobile.net.entries.RegistrationParamsBasic;
+import com.example.appmobile.net.entries.RegistrationParamsNameBirthday;
+import com.example.appmobile.net.entries.RegistrationParamsUserSettings;
 import com.example.appmobile.net.entries.User;
 
 import java.util.ArrayList;
@@ -18,11 +20,16 @@ import retrofit2.http.Field;
 import retrofit2.http.GET;
 import retrofit2.http.Header;
 import retrofit2.http.POST;
-import retrofit2.http.Query;
 
 public interface JSONPlaceHolderApi {
     @POST("/auth/register")
-    public Call<Void> registrationPostRequest(@Body RegistrationParams data);
+    public Call<Void> registrationPostRequest(@Body RegistrationParamsBasic data);
+
+    @POST("/user/edit")
+    public Call<Void> setUserFullNameBirthday(@Header("Authorization") String token, @Body RegistrationParamsNameBirthday data);
+
+    @POST("/auth/register")
+    public Call<Void> setUserSettings(@Header("Authorization") String token, @Body RegistrationParamsUserSettings data);
 
     @POST("/auth/login")
     public Call<LoginResults> loginPostRequest(@Body LoginParams data);

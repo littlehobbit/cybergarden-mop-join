@@ -6,6 +6,7 @@ import com.example.appmobile.net.entries.LoginParams;
 import com.example.appmobile.net.entries.LoginResults;
 import com.example.appmobile.net.entries.News;
 import com.example.appmobile.net.entries.NewsListResults;
+import com.example.appmobile.net.entries.Specialization;
 import com.example.appmobile.net.entries.QaListResults;
 import com.example.appmobile.net.entries.Recommendation;
 import com.example.appmobile.net.entries.RegistrationParamsBasic;
@@ -18,7 +19,6 @@ import java.util.ArrayList;
 
 import retrofit2.Call;
 import retrofit2.http.Body;
-import retrofit2.http.Field;
 import retrofit2.http.GET;
 import retrofit2.http.Header;
 import retrofit2.http.POST;
@@ -40,7 +40,10 @@ public interface JSONPlaceHolderApi {
     public Call<User> getUserDetails(@Header("Authorization") String token);
 
     @GET("/specialization/recommendation")
-    public Call<ArrayList<Recommendation>> getUserRecomendations(@Header("Authorization") String token);
+    public Call<ArrayList<Specialization>> getUserRecomendations(@Header("Authorization") String token);
+
+    @GET("/specialization/all")
+    public Call<ArrayList<Specialization>> getAllSpecializations();
 
     @GET("/events/all")
     public Call<ArrayList<EventsListResults>> getEventsList(@Header("Authorization") String token);

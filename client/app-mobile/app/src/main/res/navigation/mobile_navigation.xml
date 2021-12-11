@@ -32,7 +32,13 @@
         android:name="com.example.appmobile.ui.news.SelectednewsFragment"
         android:label="Новости"
         tools:layout="@layout/fragment_selectednews" />
-
+  
+    <fragment
+        android:id="@+id/nav_spec"
+        android:name="com.example.appmobile.ui.SpecializationListFragment"
+        android:label="Направления подготовки"
+        tools:layout="@layout/fragment_specialization_list" />   
+  
     <fragment
         android:id="@+id/nav_qa"
         android:name="com.example.appmobile.ui.qa.QaFragment"

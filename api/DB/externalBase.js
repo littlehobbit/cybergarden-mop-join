@@ -142,9 +142,23 @@ module.exports.editStudentInfo = async(student)=>{
     var result = await asyncQuery(query, request_data);
 }
 
+module.exports.editEventData = async(event) => {
+    var request_data = [event.title, event.description, event.start_date, event.end_date, event.place, event.image, event.id]
+    var query = "Update Events SET\
+	                title=?,\
+                    description=?,\
+                    start_date=?,\
+                    end_date=?,\
+                    place=?,\
+                    image=?\
+                where id=?"
+    var result = await asyncQuery(query, request_data);    
+}
+
 module.exports.getAllEvents = async(userID) => {
     var request_data = [userID];
     var query = "Select B.id,\
+                    if(exists(Select * from VisistedEvents where student_id=4 and event_id=B.id),1,0) as 'visited',\
                     B.title,\
                     B.description,\
                     B.start_date,\
@@ -164,7 +178,7 @@ module.exports.getEventData = async (eventID) =>{
                 From Events\
                 Where id = ?"
     var result = await asyncQuery(query, request_data);
-    return result;
+    return result[0];
 }
 
 module.exports.getEventTags = async(eventID) => {
@@ -182,4 +196,92 @@ module.exports.joinEvent = async (eventID, studentID) => {
     var request_data = [studentID, eventID];
     var query = 'call JoinEvent(?, ?)'
     var result = await asyncQuery(query, request_data);
+}
+
+module.exports.getAllNews = async() => {
+    var query = 'Select id,\
+                    title,\
+                    date,\
+                    picture,\
+                    description\
+                From News\
+                Order By id desc;'
+    var result = await asyncQuery(query, []);
+    return result;
+}
+
+module.exports.getNewsTags = async(newsID) => {
+    var request_data = [newsID];
+    var query = 'Select A.weight,\
+                C.name as "tag"\
+                From Interests C right join NewsInterests A on C.id=A.interest_id left join News B on A.news_id = B.id\
+                Where B.id = ?'
+    var result = await asyncQuery(query, request_data);
+    return result;
+}
+
+module.exports.getNewsData = async(newsID) => {
+    var request_data = [newsID];
+    var query = 'Select id,\
+                    title,\
+                    date,\
+                    picture,\
+                    description\
+                From News\
+                Where id=?'
+    var result = await asyncQuery(query, request_data);
+    return result[0];
+}
+
+module.exports.editNewsData = async(news) => {
+    var request_data = [newsID];
+    var query = 'Select id,\
+                    title,\
+                    date,\
+                    picture,\
+                    description\
+                From News\
+                Where id=?'
+    var result = await asyncQuery(query, request_data);
+    return result[0];
+}
+
+module.exports.readNews = async (newsID, studentID)=>{
+    var request_data = [studentID, newsID];
+    var query = 'call readNews(?, ?)'
+    var result = await asyncQuery(query, request_data);
+}
+
+module.exports.getAllSpecifications = async() => {
+    var query = "SELECT id,\
+                    codificator,\
+                    title,\
+                    tag_grad,\
+                    tag_type,\
+                    description\
+                FROM hackathon_garden_winter.Specialization;"
+    var result = await asyncQuery(query,[]);
+    return result;
+}
+
+module.exports.getSpecificationInterests = async(specificationID) => {
+    var request_data = [specificationID];
+    var query = "SELECT I.id,\
+                    SI.weight,\
+                    I.name\
+                FROM SpecializationInterests SI left join Interests I on SI.id_interests=I.id\
+                Where SI.id_specialization=?"
+    var result = await asyncQuery(query, request_data);
+    return result;
+}
+
+module.exports.getStudentInterests = async(studentID) => {
+    var request_data = [studentID];
+    var query = "SELECT I.id,\
+                    UI.weight,\
+                    I.name\
+                FROM UserInterests UI left join Interests I on UI.interest_id=I.id\
+                Where UI.student_id=?"
+    var result = await asyncQuery(query, request_data);
+    return result;
 }

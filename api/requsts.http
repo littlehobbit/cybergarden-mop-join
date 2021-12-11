@@ -21,7 +21,7 @@ Content-Type: application/json
 
 {
     "identifier":"dlaptev@sfedu.ru",
-    "password":"warface567"
+    "password":"1"
 }
 
 ### Logout
@@ -32,13 +32,11 @@ authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MiwiaWF0IjoxN
 ### Edit data
 
 POST http://192.168.43.124:3737/auth/edit
-authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwiaWF0IjoxNjM1OTQ5NjkwfQ.BEEIVduaKDU4Ba5pfvZU3nCvky5ET4k7HEYukfQuf50
+authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6Miwic3R1ZGVudCI6NCwiaWF0IjoxNjM5MTc4Nzc2fQ.CAmc28pI41b6Af-8NWWHbH34pjfFdInAsGDxK-lTEU8
 Content-Type: application/json
 
 {
-    "email":"nikita.kutovoy@gmail.com",
-    "phone":"+79286187502",
-    "username":"ElizavetaNN"
+    "password":"1"
 }
 
 ### Get data
@@ -91,15 +89,42 @@ Content-Type: image/png
 ###
 
 GET http://192.168.43.124:3737/events/all
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6Miwic3R1ZGVudCI6NCwiaWF0IjoxNjM5MTc0MTI3fQ.T2uInHNgmQ4uiMBvFnuP-jGsyGRowHHX43JY5vNZ2lE
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6Miwic3R1ZGVudCI6NCwiaWF0IjoxNjM5MTc1NTE5fQ.ZwIGIbrhTFTWzE0UpFj90-CmcTYMBpkfINHQQkT6t1I
 
 
 ###
 
 POST http://192.168.43.124:3737/events/join
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6Miwic3R1ZGVudCI6NCwiaWF0IjoxNjM5MTc1NTE5fQ.ZwIGIbrhTFTWzE0UpFj90-CmcTYMBpkfINHQQkT6t1I
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6Miwic3R1ZGVudCI6NCwiaWF0IjoxNjM5MTg3NzUzfQ.8_zmx8p6tMW1EFjZdhGEFatrXvCwKDah_38wKVdLYU8
 Content-Type: application/json
 
 {
     "event_id" : 4
 }
+
+###
+
+GET http://192.168.43.124:3737/news/all
+
+###
+
+GET http://192.168.43.124:3737/events/getImage?id=1
+
+###
+
+POST http://192.168.43.124:3737/news/read
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6Miwic3R1ZGVudCI6NCwiaWF0IjoxNjM5MTgzNjU0fQ.BEAk0aeQEqmTdOzGcgynrydImm4l-jMaI2f03h_F9zI
+Content-Type: application/json
+
+{
+    "news_id":5
+}
+
+###
+
+Get http://192.168.43.124:3737/specialization/all
+
+###
+
+Get http://192.168.43.124:3737/specialization/recommendation
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6Miwic3R1ZGVudCI6NCwiaWF0IjoxNjM5MTk4NTY0fQ.ZX6pUBnw8TaLbLveF8jxfOLeYCwPSuNAVKBuwgI7MsE

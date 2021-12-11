@@ -27,6 +27,7 @@ public class NewsRecyclerAdapter extends RecyclerView.Adapter<NewsRecyclerAdapte
     public static class ViewHolder extends RecyclerView.ViewHolder {
 
         TextView title;
+        TextView tags;
         ImageView image;
 
         public TextView getTitle() {
@@ -41,6 +42,7 @@ public class NewsRecyclerAdapter extends RecyclerView.Adapter<NewsRecyclerAdapte
         public ViewHolder(View view) {
             super(view);
             title = view.findViewById(R.id.event_card_title);
+            tags = view.findViewById(R.id.event_card_title);
             image = view.findViewById(R.id.news_card_img);
         }
     }

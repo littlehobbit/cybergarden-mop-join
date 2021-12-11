@@ -306,3 +306,14 @@ module.exports.getAllQuestions = async() => {
     var result = await asyncQuery(query, []);
     return result;
 }
+
+module.exports.getSpecializationEge = async(specID) => {
+    var request_data = [specID];
+    var query = "Select A.grade,\
+                    B.subject\
+                    From SubjSpecialization A \
+                    right join Subjects B on A.id_subject=B.id \
+                    where A.id_specialization=1"
+    var result = await asyncQuery(query, request_data);
+    return result;
+}

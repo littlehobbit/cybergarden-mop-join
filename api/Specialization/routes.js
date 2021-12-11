@@ -5,9 +5,10 @@ const middlewares = require('./../Auth/functions').middlewares;
 
 router.get("/all", async (req, res) => {    
     var Specializations = await db.getAllSpecifications();
-    Specialization.array.forEach(element => {
-        delete element["id"]
-    });
+    for (let i = 0; i < Specializations.length; i++) {
+        Specializations[i].ege = await db.getSpecializationEge(Specializations[i]["id"]);
+        delete Specializations["id"];
+    }
     res.status(200).send(Specializations);
 })
 
@@ -24,6 +25,7 @@ router.get("/recommendation", async(req, res)=>{
     for (let i = 0; i < Specialization.length; i++) {
         var specInterests = await db.getSpecificationInterests(Specialization[i]["id"]);
         Specialization[i].weight = 0;
+        Specialization[i].ege = await db.getSpecializationEge(Specialization[i]["id"]);
         for (let j = 0; j < specInterests.length; j++) {
             Specialization[i].weight += specInterests[j].weight * userI[specInterests[j].id];
         }

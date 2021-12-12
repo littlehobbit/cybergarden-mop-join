@@ -93,9 +93,6 @@ public class QaRecyclerAdapter extends RecyclerView.Adapter<QaRecyclerAdapter.Vi
 
     @Override
     public void onBindViewHolder(@NonNull ViewHolder viewHolder, int position) {
-
-
-
         final QaListResults object = data.get(position);
         viewHolder.getButton().setOnClickListener(view -> {
             object.swapIsDescriptionShown();

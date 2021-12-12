@@ -10,7 +10,7 @@ import retrofit2.converter.gson.GsonConverterFactory;
 
 public class NetworkService {
     private static NetworkService mInstance;
-    private static final String BASE_URL = "http://192.168.61.124:3737";
+    private static final String BASE_URL = "http://10.131.56.127:3737";
     private Retrofit mRetrofit;
     private String fullToken;
 

@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/registration_navigation"
+    app:startDestination="@id/firstPageRegistration">
+
+    <fragment
+        android:id="@+id/firstPageRegistration"
+        android:name="com.example.appmobile.ui.registration.FirstPageRegistration"
+        android:label="fragment_first_page_registration"
+        tools:layout="@layout/fragment_first_page_registration" >
+        <action
+            android:id="@+id/to_secondPage"
+            app:destination="@id/secondPageRegistration" />
+    </fragment>
+    <fragment
+        android:id="@+id/secondPageRegistration"
+        android:name="com.example.appmobile.ui.registration.SecondPageRegistration"
+        android:label="fragment_second_page_registration"
+        tools:layout="@layout/fragment_second_page_registration" >
+        <action
+            android:id="@+id/to_firstPage"
+            app:destination="@id/firstPageRegistration" />
+        <action
+            android:id="@+id/to_thirdPage"
+            app:destination="@id/thirdPageRegistration" />
+    </fragment>
+    <fragment
+        android:id="@+id/thirdPageRegistration"
+        android:name="com.example.appmobile.ui.registration.ThirdPageRegistration"
+        android:label="fragment_third_page_registration"
+        tools:layout="@layout/fragment_third_page_registration" >
+        <action
+            android:id="@+id/to_secondPage"
+            app:destination="@id/secondPageRegistration" />
+    </fragment>
+</navigation>

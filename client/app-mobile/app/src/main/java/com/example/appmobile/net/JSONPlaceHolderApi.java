@@ -12,7 +12,9 @@ import com.example.appmobile.net.entries.RegistrationParamsBasic;
 import com.example.appmobile.net.entries.RegistrationParamsNameBirthday;
 import com.example.appmobile.net.entries.RegistrationParamsUserSettings;
 import com.example.appmobile.net.entries.SelectedNewsBody;
+import com.example.appmobile.net.entries.TestDataResults;
 import com.example.appmobile.net.entries.User;
+import com.example.appmobile.net.entries.answerQuestionData;
 
 import java.util.ArrayList;
 
@@ -54,7 +56,13 @@ public interface JSONPlaceHolderApi {
     @POST("/events/join")
     public Call<Void> joinEventById(@Header("Authorization") String token, @Body JoinEvent joinEvent);
 
+    @GET("/test/all")
+    public Call<ArrayList<TestDataResults>> getTestData();
+
     @GET("/qna/all")
     public Call<ArrayList<QaListResults>> getQaListData();
+
+    @POST("/test/answer")
+    public Call<Void> answerQuestion(@Body answerQuestionData data, @Header("Authorization") String token);
 
 }

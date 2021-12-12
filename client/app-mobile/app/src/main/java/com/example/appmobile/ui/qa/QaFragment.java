@@ -13,12 +13,9 @@ import android.view.ViewGroup;
 import android.widget.Toast;
 
 import com.example.appmobile.R;
-import com.example.appmobile.adapters.EventsRecyclerAdapter;
 import com.example.appmobile.adapters.QaRecyclerAdapter;
-import com.example.appmobile.databinding.FragmentEventsBinding;
 import com.example.appmobile.databinding.FragmentQaBinding;
 import com.example.appmobile.net.NetworkService;
-import com.example.appmobile.net.entries.EventsListResults;
 import com.example.appmobile.net.entries.QaListResults;
 
 import java.util.ArrayList;

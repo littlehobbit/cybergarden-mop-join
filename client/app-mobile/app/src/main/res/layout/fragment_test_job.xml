@@ -1,74 +1,136 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.motion.widget.MotionLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:id="@+id/motionLayout"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/constraintMain"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:layout_marginTop="50dp"
+
     android:clipChildren="false"
+    android:orientation="vertical"
     app:layoutDescription="@xml/scene_main">
 
-    <FrameLayout
-        android:id="@+id/bottomCard"
-        android:layout_height="0dp"
-        android:layout_width="0dp">
+    <androidx.constraintlayout.motion.widget.MotionLayout
+        android:id="@+id/motionLayout"
+        android:layout_width="match_parent"
+        android:layout_height="300dp"
+        android:layout_weight="4"
+        android:clipChildren="false"
+        app:layoutDescription="@xml/scene_main"
+        app:layout_constraintBottom_toTopOf="@+id/linearLayout3"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <FrameLayout
+            android:id="@+id/bottomCard"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:layout_editor_absoluteX="20dp">
+
+            <androidx.cardview.widget.CardView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+                <TextView
+                    android:id="@+id/question_back"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_gravity="center_horizontal"
+                    android:layout_marginBottom="100dp"
+                    android:background="@color/main_blue"
+                    android:fontFamily="@font/roboto_bold"
+                    android:gravity="center"
+                    android:text="TextView"
+                    android:textColor="#fff"
+                    android:textSize="20sp" />
+            </androidx.cardview.widget.CardView>
+
+        </FrameLayout>
+
+        <FrameLayout
+            android:id="@+id/topCard"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:layout_editor_absoluteX="20dp"
+            tools:layout_editor_absoluteY="20dp">
+
+            <androidx.cardview.widget.CardView
+                android:id="@+id/questionCard"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+                <TextView
+                    android:id="@+id/question"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_gravity="center_horizontal"
+                    android:layout_marginBottom="100dp"
+                    android:background="@color/main_blue"
+                    android:fontFamily="@font/roboto_bold"
+                    android:gravity="center"
+                    android:text="TextView"
+                    android:textColor="#fff"
+                    android:textSize="20dp" />
+            </androidx.cardview.widget.CardView>
+
+        </FrameLayout>
+
+        <ImageView
+            android:id="@+id/likeIcon"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:background="@drawable/backround_circle"
+            android:src="@drawable/ic_baseline_done"
+            app:tint="#fbc02d"
+            tools:layout_editor_absoluteX="104dp"
+            tools:layout_editor_absoluteY="77dp" />
+
+        <ImageView
+            android:id="@+id/passIcon"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:background="@drawable/backround_circle"
+            android:src="@drawable/ic_baseline_close"
+            app:tint="#e64a19" />
+
+    </androidx.constraintlayout.motion.widget.MotionLayout>
+
+    <LinearLayout
+        android:id="@+id/linearLayout3"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="bottom"
+        android:layout_marginHorizontal="20dp"
+        android:layout_weight="3"
+        android:orientation="horizontal"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent">
+
 
         <ImageButton
+            android:id="@+id/not_interesting_btn"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginEnd="40dp"
-            android:layout_marginBottom="40dp"
-            android:layout_gravity="bottom|end"
-            android:src="@drawable/ic_baseline_done"/>
+            android:layout_margin="5dp"
+            android:layout_weight="1"
+            android:background="#F16464"
+            app:srcCompat="@drawable/_f971" />
 
         <ImageButton
+            android:id="@+id/interesting_btn"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="40dp"
-            android:layout_marginBottom="40dp"
-            android:layout_gravity="bottom|start"
-            android:src="@drawable/ic_baseline_close"/>
+            android:layout_margin="5dp"
+            android:layout_weight="1"
+            android:background="#81ED7D"
+            app:srcCompat="@drawable/_f603" />
+    </LinearLayout>
 
-    </FrameLayout>
-
-    <FrameLayout
-        android:id="@+id/topCard"
-        android:layout_height="0dp"
-        android:layout_width="0dp">
-
-        <ImageButton
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginEnd="40dp"
-            android:layout_marginBottom="40dp"
-            android:id="@+id/likeButton"
-            android:layout_gravity="bottom|end"
-            android:src="@drawable/ic_baseline_done"/>
-
-        <ImageButton
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="40dp"
-            android:layout_marginBottom="40dp"
-            android:id="@+id/passButton"
-            android:layout_gravity="bottom|start"
-            android:src="@drawable/ic_baseline_close"/>
-
-    </FrameLayout>
-
-    <ImageView
-        android:id="@+id/likeIcon"
-        android:src="@drawable/ic_baseline_favorite_border"
-        app:tint="#fbc02d"
-        android:background="@drawable/backround_circle"
-        android:layout_height="0dp"
-        android:layout_width="0dp" />
-
-    <ImageView
-        android:id="@+id/passIcon"
-        android:src="@drawable/ic_baseline_close"
-        android:background="@drawable/backround_circle"
-        app:tint="#e64a19"
-        android:layout_height="0dp"
-        android:layout_width="0dp"/>
-
-</androidx.constraintlayout.motion.widget.MotionLayout>
+</LinearLayout>

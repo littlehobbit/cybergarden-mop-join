@@ -3,13 +3,11 @@ package com.example.appmobile;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.content.res.AppCompatResources;
-import androidx.core.content.ContextCompat;
 
 import android.app.NotificationChannel;
 import android.app.NotificationManager;
 import android.content.Context;
 import android.content.Intent;
-import android.graphics.Color;
 import android.graphics.PorterDuff;
 import android.graphics.PorterDuffColorFilter;
 import android.graphics.drawable.Drawable;
@@ -23,6 +21,7 @@ import android.widget.Toast;
 import com.example.appmobile.net.NetworkService;
 import com.example.appmobile.net.entries.LoginParams;
 import com.example.appmobile.net.entries.LoginResults;
+import com.example.appmobile.ui.registration.RegistrationActivity;
 
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -114,7 +113,7 @@ public class SignInScreen extends AppCompatActivity {
         btnToRegScreen.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(SignInScreen.this, SignUpScreen.class);
+                Intent intent = new Intent(SignInScreen.this, RegistrationActivity.class);
                 startActivity(intent);
             }
         });

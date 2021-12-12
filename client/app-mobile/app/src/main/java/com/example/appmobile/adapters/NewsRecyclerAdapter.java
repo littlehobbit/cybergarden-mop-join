@@ -30,6 +30,7 @@ public class NewsRecyclerAdapter extends RecyclerView.Adapter<NewsRecyclerAdapte
         this.onClickListener = onClickListener;
         this.data = data;
     }
+
     /**
      * Provide a reference to the type of views that you are using
      * (custom ViewHolder).
@@ -38,7 +39,6 @@ public class NewsRecyclerAdapter extends RecyclerView.Adapter<NewsRecyclerAdapte
 
         TextView title;
         TextView tags;
-        ImageView image;
         NewsListResults news;
 
         public TextView getTitle() {
@@ -49,16 +49,10 @@ public class NewsRecyclerAdapter extends RecyclerView.Adapter<NewsRecyclerAdapte
             return tags;
         }
 
-        public ImageView getImage() {
-            return image;
-        }
-
-
         public ViewHolder(View view) {
             super(view);
             title = view.findViewById(R.id.event_card_title);
             tags = view.findViewById(R.id.news_card_tags);
-            image = view.findViewById(R.id.news_card_img);
         }
 
         public NewsListResults getNews() {
@@ -68,8 +62,8 @@ public class NewsRecyclerAdapter extends RecyclerView.Adapter<NewsRecyclerAdapte
         public void setNews(NewsListResults newsRes) {
             this.news = newsRes;
             StringBuilder tags = new StringBuilder();
-            for(Tag item : newsRes.getTags()) {
-                tags.append(item.getTag()).append(" ");
+            for (Tag item : newsRes.getTags()) {
+                tags.append("#").append(item.getTag()).append(" ");
             }
             this.tags.setText(tags.toString());
             this.title.setText(newsRes.getTitle());
@@ -97,8 +91,6 @@ public class NewsRecyclerAdapter extends RecyclerView.Adapter<NewsRecyclerAdapte
     public void onBindViewHolder(ViewHolder viewHolder, final int position) {
         NewsListResults object = data.get(position);
         viewHolder.setNews(object);
-        Picasso.get().load(NetworkService.getInstance().getNewsImageUrl()
-                + object.getId()).placeholder(R.drawable.placeholder_img).error(R.drawable.e3f0a108aabbd2325203e40177f21312).into(viewHolder.getImage());
     }
 
     // Return the size of your dataset (invoked by the layout manager)
@@ -108,13 +100,13 @@ public class NewsRecyclerAdapter extends RecyclerView.Adapter<NewsRecyclerAdapte
     }
 
     public void clearAll() {
-        if(data == null) return;
+        if (data == null) return;
         data.clear();
         notifyDataSetChanged();
     }
 
     public void addAll(ArrayList<NewsListResults> newData) {
-        if(data == null) return;
+        if (data == null) return;
         data.addAll(newData);
         notifyDataSetChanged();
     }

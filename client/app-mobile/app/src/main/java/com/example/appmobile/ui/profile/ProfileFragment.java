@@ -17,15 +17,12 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.example.appmobile.R;
 import com.example.appmobile.adapters.RecommendationListAdapter;
 import com.example.appmobile.databinding.FragmentProfileBinding;
-import com.example.appmobile.net.JSONPlaceHolderApi;
 import com.example.appmobile.net.NetworkService;
-import com.example.appmobile.net.entries.NewsListResults;
-import com.example.appmobile.net.entries.Recommendation;
+import com.example.appmobile.net.entries.Specialization;
 import com.example.appmobile.net.entries.User;
 import com.example.appmobile.viewmodels.UserViewModel;
 import com.squareup.picasso.Picasso;
 
-import java.security.Provider;
 import java.util.ArrayList;
 
 import retrofit2.Call;
@@ -72,9 +69,9 @@ public class ProfileFragment extends Fragment {
         NetworkService.getInstance()
                 .getJSONApi()
                 .getUserRecomendations(NetworkService.getInstance().getToken())
-                .enqueue(new Callback<ArrayList<Recommendation>>() {
+                .enqueue(new Callback<ArrayList<Specialization>>() {
                     @Override
-                    public void onResponse(@NonNull Call<ArrayList<Recommendation>> call, @NonNull Response<ArrayList<Recommendation>> response) {
+                    public void onResponse(@NonNull Call<ArrayList<Specialization>> call, @NonNull Response<ArrayList<Specialization>> response) {
                         if(response.isSuccessful()) {
                             if (response.body().size() != 0) {
                                 failedBlock.setVisibility(View.GONE);
@@ -89,7 +86,7 @@ public class ProfileFragment extends Fragment {
                     }
 
                     @Override
-                    public void onFailure(@NonNull Call<ArrayList<Recommendation>> call, @NonNull Throwable t) {
+                    public void onFailure(@NonNull Call<ArrayList<Specialization>> call, @NonNull Throwable t) {
 
                         Toast.makeText(getContext(), "Error while you get recommendations", Toast.LENGTH_SHORT).show();
                         t.printStackTrace();

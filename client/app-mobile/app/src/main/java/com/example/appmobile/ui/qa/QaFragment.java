@@ -43,7 +43,7 @@ public class QaFragment extends Fragment {
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-        recyclerView = view.findViewById(R.id.events_list);
+        recyclerView = binding.qaList;
         adapter.clearAll();
         updateQAList();
 
@@ -58,8 +58,8 @@ public class QaFragment extends Fragment {
                     public void onResponse(Call<ArrayList<QaListResults>> call, Response<ArrayList<QaListResults>> response) {
                         if(response.isSuccessful()) {
                             Toast.makeText(getContext(), "Get qa list, yeeeee", Toast.LENGTH_SHORT).show();
-                            adapter.addAll(response.body());
                             recyclerView.setAdapter(adapter);
+                            adapter.addAll(response.body());
                         }
                     }
 

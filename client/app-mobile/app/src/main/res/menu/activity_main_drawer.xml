@@ -17,8 +17,8 @@
             android:id="@+id/nav_user"
             android:icon="@drawable/ic_baseline_face_24"
             android:title="Профиль" />
-      
-            android:id="@+id/nav_spec"
+
+        <item android:id="@+id/nav_spec"
             android:icon="@drawable/ic_baseline_school_24"
             android:title="Направления подготовки" />
 

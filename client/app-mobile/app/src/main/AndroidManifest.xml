@@ -17,7 +17,7 @@
             android:label="@string/title_activity_main"
             android:theme="@style/Theme.AppMobile.NoActionBar" />
         <activity
-            android:name=".SignUpScreen"
+            android:name=".ui.registration.RegistrationActivity"
             android:exported="false" />
         <activity
             android:name=".SignInScreen"

@@ -29,7 +29,7 @@ public interface JSONPlaceHolderApi {
     @POST("/user/edit")
     public Call<Void> setUserFullNameBirthday(@Header("Authorization") String token, @Body RegistrationParamsNameBirthday data);
 
-    @POST("/auth/register")
+    @POST("/auth/edit")
     public Call<Void> setUserSettings(@Header("Authorization") String token, @Body RegistrationParamsUserSettings data);
 
     @POST("/auth/login")

@@ -1,66 +1,113 @@
 package com.example.appmobile.ui.registration;
 
+import android.content.Intent;
+import android.graphics.PorterDuff;
+import android.graphics.PorterDuffColorFilter;
+import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
+import androidx.appcompat.content.res.AppCompatResources;
 import androidx.fragment.app.Fragment;
+import androidx.navigation.Navigation;
 
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ArrayAdapter;
+import android.widget.EditText;
+import android.widget.ListView;
+import android.widget.Spinner;
 
 import com.example.appmobile.R;
+import com.example.appmobile.SignInScreen;
+import com.example.appmobile.databinding.FragmentSecondPageRegistrationBinding;
+import com.example.appmobile.viewmodels.RegistrationViewModel;
 
-/**
- * A simple {@link Fragment} subclass.
- * Use the {@link SecondPageRegistration#newInstance} factory method to
- * create an instance of this fragment.
- */
+import java.util.HashMap;
+
 public class SecondPageRegistration extends Fragment {
 
-    // TODO: Rename parameter arguments, choose names that match
-    // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
-    private static final String ARG_PARAM1 = "param1";
-    private static final String ARG_PARAM2 = "param2";
+    RegistrationViewModel registrationViewModel;
+    private FragmentSecondPageRegistrationBinding binding;
 
-    // TODO: Rename and change types of parameters
-    private String mParam1;
-    private String mParam2;
-
-    public SecondPageRegistration() {
-        // Required empty public constructor
-    }
-
-    /**
-     * Use this factory method to create a new instance of
-     * this fragment using the provided parameters.
-     *
-     * @param param1 Parameter 1.
-     * @param param2 Parameter 2.
-     * @return A new instance of fragment SecondPageRegistration.
-     */
-    // TODO: Rename and change types and number of parameters
-    public static SecondPageRegistration newInstance(String param1, String param2) {
-        SecondPageRegistration fragment = new SecondPageRegistration();
-        Bundle args = new Bundle();
-        args.putString(ARG_PARAM1, param1);
-        args.putString(ARG_PARAM2, param2);
-        fragment.setArguments(args);
-        return fragment;
-    }
+    HashMap<String, Integer> rolesDict = new HashMap<>();
+    String roles[] = new String[]{"школьник", "выпускник школы", "коледж", "выпускник коледжа"};
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
+        rolesDict.put("школьник", 1);
+        rolesDict.put("выпускник школы", 2);
+        rolesDict.put("коледж", 3);
+        rolesDict.put("выпускник коледжа", 4);
         super.onCreate(savedInstanceState);
-        if (getArguments() != null) {
-            mParam1 = getArguments().getString(ARG_PARAM1);
-            mParam2 = getArguments().getString(ARG_PARAM2);
-        }
     }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_second_page_registration, container, false);
+        binding = FragmentSecondPageRegistrationBinding.inflate(inflater, container, false);
+
+        return binding.getRoot();
+    }
+
+    @Override
+    public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
+        super.onViewCreated(view, savedInstanceState);
+
+        ArrayAdapter adapter = new ArrayAdapter<String>(view.getContext(), R.layout.listitem, R.id.textview, roles);
+
+        binding.roleField.setAdapter(adapter);
+
+        registrationViewModel = RegistrationViewModel.create(requireActivity());
+
+        binding.btnToSignIn.setOnClickListener(
+                btn -> {
+                    Intent loginActivity = new Intent(requireContext(), SignInScreen.class);
+                    startActivity(loginActivity);
+                }
+        );
+
+        binding.toSecondPage.setOnClickListener(
+                btn -> {
+                    // check fields
+                    if (binding.birthdayField.getText().toString().isEmpty()) {
+                        errorColor(binding.birthdayField);
+                        return;
+                    }
+
+                    if (binding.roleField.getSelectedItem().toString().isEmpty()) {
+                        errorColor(binding.roleField);
+                        return;
+                    }
+                    try {
+                        registrationViewModel.setRole(rolesDict.get(binding.roleField.getSelectedItem().toString()));
+                    } catch (Exception e) {
+                        errorColor(binding.roleField);
+                        return;
+                    }
+
+                    openNext();
+                }
+        );
+    }
+
+    private void errorColor(Spinner element) {
+        element.setBackground(AppCompatResources.getDrawable(requireContext(), R.drawable.error_input_field_background));
+    }
+
+    private void errorColor(EditText element) {
+        element.setBackground(AppCompatResources.getDrawable(requireContext(), R.drawable.error_input_field_background));
+        for (Drawable drawable : element.getCompoundDrawables()) {
+            if (drawable != null) {
+                drawable.setColorFilter(new PorterDuffColorFilter(getResources().getColor(R.color.main_error), PorterDuff.Mode.SRC_IN));
+            }
+        }
+    }
+
+    private void openNext() {
+        Navigation.findNavController(binding.getRoot()).navigate(R.id.to_thirdPage);
     }
 }

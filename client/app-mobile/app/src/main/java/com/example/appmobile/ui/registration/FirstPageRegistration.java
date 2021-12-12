@@ -62,8 +62,8 @@ public class FirstPageRegistration extends Fragment {
                         return;
                     }
 
-                    if (binding.nameField.getText().toString().isEmpty()) {
-                        errorColor(binding.nameField);
+                    if (binding.nameDfield1.getText().toString().isEmpty()) {
+                        errorColor(binding.nameDfield1);
                         return;
                     }
 
@@ -73,7 +73,7 @@ public class FirstPageRegistration extends Fragment {
                     }
 
                     registrationViewModel.setSurname(binding.surnameField.getText().toString());
-                    registrationViewModel.setName(binding.nameField.getText().toString());
+                    registrationViewModel.setName(binding.nameDfield1.getText().toString());
                     registrationViewModel.setMiddleName(binding.middleNameField.getText().toString());
 
                     openNext();

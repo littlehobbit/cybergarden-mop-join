@@ -11,6 +11,7 @@ public class RegistrationViewModel extends ViewModel {
     public final MutableLiveData<String> name = new MutableLiveData<>();
     public final MutableLiveData<String> middleName = new MutableLiveData<>();
     public final MutableLiveData<String> birthday = new MutableLiveData<>();
+    public final MutableLiveData<Integer> role = new MutableLiveData<>(1);
 
     public final MutableLiveData<String> email = new MutableLiveData<>();
     public final MutableLiveData<String> password = new MutableLiveData<>();
@@ -29,6 +30,18 @@ public class RegistrationViewModel extends ViewModel {
 
     public static RegistrationViewModel create(ViewModelStoreOwner owner) {
         return new ViewModelProvider(owner).get(RegistrationViewModel.class);
+    }
+
+    public void setRole(Integer value) {
+        this.role.setValue(value);
+    }
+
+   public void setEmail(String value) {
+        this.email.setValue(value);
+   }
+
+    public void setPassword(String value) {
+        this.password.setValue(value);
     }
 
 }

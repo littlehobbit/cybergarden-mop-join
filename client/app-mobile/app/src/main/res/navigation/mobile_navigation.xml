@@ -44,4 +44,14 @@
         android:name="com.example.appmobile.ui.qa.QaFragment"
         android:label="Вопрос|Ответ"
         tools:layout="@layout/fragment_qa" />
+
+    <fragment
+        android:id="@+id/nav_job_test"
+        android:name="com.example.appmobile.ui.job_test.JobTestFragment"
+        android:label="Тестирование"
+        tools:layout="@layout/fragment_test_job">
+        <action
+            android:id="@+id/action_from_test_to_user"
+            app:destination="@id/nav_user" />
+    </fragment>
 </navigation>

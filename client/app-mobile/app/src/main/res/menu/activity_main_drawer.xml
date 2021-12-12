@@ -14,6 +14,10 @@
             android:title="События" />
 
         <item
+            android:id="@+id/nav_user"
+            android:icon="@drawable/ic_baseline_face_24"
+            android:title="Профиль" />
+      
             android:id="@+id/nav_spec"
             android:icon="@drawable/ic_baseline_school_24"
             android:title="Направления подготовки" />
@@ -22,9 +26,10 @@
             android:id="@+id/nav_qa"
             android:icon="@drawable/ic_baseline_chat_24"
             android:title="QA" />
+
         <item
-            android:id="@+id/nav_user"
-            android:icon="@drawable/ic_baseline_face_24"
-            android:title="Профиль" />
+            android:id="@+id/nav_job_test"
+            android:icon="@drawable/ic_baseline_ballot_24"
+            android:title="Тестирование" />
     </group>
 </menu>

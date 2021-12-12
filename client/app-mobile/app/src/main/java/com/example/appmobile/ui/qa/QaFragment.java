@@ -13,11 +13,9 @@ import android.view.ViewGroup;
 import android.widget.Toast;
 
 import com.example.appmobile.R;
-import com.example.appmobile.adapters.EventsRecyclerAdapter;
 import com.example.appmobile.adapters.QaRecyclerAdapter;
-import com.example.appmobile.databinding.FragmentEventsBinding;
+import com.example.appmobile.databinding.FragmentQaBinding;
 import com.example.appmobile.net.NetworkService;
-import com.example.appmobile.net.entries.EventsListResults;
 import com.example.appmobile.net.entries.QaListResults;
 
 import java.util.ArrayList;
@@ -29,7 +27,7 @@ import retrofit2.Response;
 
 public class QaFragment extends Fragment {
 
-    private FragmentEventsBinding binding;
+    private FragmentQaBinding binding;
     QaRecyclerAdapter adapter = new QaRecyclerAdapter(new ArrayList<>());
     RecyclerView recyclerView;
 
@@ -37,7 +35,7 @@ public class QaFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
 
-        binding = FragmentEventsBinding.inflate(inflater, container, false);
+        binding = FragmentQaBinding.inflate(inflater, container, false);
         View root = binding.getRoot();
         return root;
     }

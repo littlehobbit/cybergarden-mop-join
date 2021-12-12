@@ -145,3 +145,18 @@ Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwic3R1ZGVud
 ###
 
 Get http://127.0.0.1:3737/qna/all
+
+###
+
+GET http://127.0.0.1:3737/test/all
+
+###
+
+POST http://127.0.0.1:3737/test/answer
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwic3R1ZGVudCI6MywiaWF0IjoxNjM5MjYzNDkwfQ.mkYEFsY5FKUVO3HQmGrBss8JbVwIdeHqPFmhP9g9mfY
+Content-Type: application/json
+
+{
+    "question_id":1,
+    "answer":"1) цвет, совершенство форм"
+}

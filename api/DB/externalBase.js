@@ -1,3 +1,4 @@
+const { query } = require("express");
 const mysql = require("mysql2");
 
 function createConnection(){
@@ -32,7 +33,7 @@ function asyncQuery(query, params) {
 
 module.exports.createUser = async (user) => {
     var request_data = [user.email, user.password];
-    query = 'SELECT Register(?, ?);'
+    var query = 'SELECT Register(?, ?);'
     response = await asyncQuery(query, request_data);
 }
 
@@ -316,4 +317,28 @@ module.exports.getSpecializationEge = async(specID) => {
                     where A.id_specialization=1"
     var result = await asyncQuery(query, request_data);
     return result;
+}
+
+module.exports.getQuestions = async() => {
+    var query = "Select id,\
+                    question\
+                From Test_Specialization"
+    var result = await asyncQuery(query, []);
+    return result;
+}
+
+module.exports.getQuestionAnswers = async(questionID) =>{
+    var request_data = [questionID];
+    var query = "Select answer\
+                from TEST_answers_weight\
+                where id_question=?"
+    var result = await asyncQuery(query, request_data);
+    return result;
+}
+
+module.exports.answerQuestion = async(studentID, questionID, answer) => {
+    var request_data = [studentID, questionID, answer];
+    var query = "call answerQuestion(?, ?, ?)";
+    var result = await asyncQuery(query, request_data);
+    return result
 }

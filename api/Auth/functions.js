@@ -180,6 +180,7 @@ module.exports.routes.editUser = async (req, res) => {
         }
         else answer.phone = { "code": 400, "description": "Incorrect Phone" }
     }
+    req.user.role = req.body.role ? req.body.role : req.user.role
     res.status(207).json(answer);
     await db.editUserInfo(req.user, id);
 }
